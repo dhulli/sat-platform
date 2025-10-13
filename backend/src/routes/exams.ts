@@ -15,5 +15,7 @@ router.post('/:examId/start', ExamController.startTest);
 router.get('/sessions/:sessionId', ExamController.getSessionStatus);
 router.get('/sessions/:sessionId/modules/:module/questions', ExamController.getModuleQuestions);
 router.post('/sessions/:sessionId/answers', ExamController.submitAnswer);
+router.post('/sessions/:sessionId/complete', ExamController.completeTest);
+
 
 export default router;

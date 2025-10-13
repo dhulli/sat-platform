@@ -226,4 +226,32 @@ export class ExamController {
       });
     }
   }
+
+  static async completeTest(req: Request, res: Response) {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ success: false, message: 'Authentication required' });
+    }
+
+    const { sessionId } = req.params;
+    const session = await TestSessionModel.findById(parseInt(sessionId));
+
+    if (!session || session.user_id !== req.user.userId) {
+      return res.status(404).json({ success: false, message: 'Test session not found' });
+    }
+
+    const grading = await ResponseModel.gradeSession(parseInt(sessionId));
+    await TestSessionModel.completeAndSaveScore(parseInt(sessionId), grading.score);
+
+    res.json({
+      success: true,
+      message: 'Test graded successfully',
+      data: grading
+    });
+  } catch (error) {
+    console.error('Complete test grading error:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+}
+
 }

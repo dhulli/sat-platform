@@ -167,6 +167,20 @@ export class TestSessionModel {
       [module1Score, module2Difficulty, sessionId]
     );
   }
+
+  static async updateStatus(sessionId: number, status: string) {
+    await pool.execute(
+      'UPDATE test_sessions SET status = ? WHERE id = ?',
+      [status, sessionId]
+    );
+  }
+
+  static async completeAndSaveScore(sessionId: number, score: number): Promise<void> {
+    await pool.execute(
+      'UPDATE test_sessions SET status = "completed", completed_at = NOW(), module1_score = ? WHERE id = ?',
+      [score, sessionId]
+    );
+  }
 }
 
 export class ResponseModel {
@@ -205,4 +219,49 @@ export class ResponseModel {
     );
     return rows as Response[];
   }
+  
+  static async gradeSession(sessionId: number): Promise<{
+    score: number;
+    correctCount: number;
+    totalQuestions: number;
+    results: any[];
+  }> {
+  // Get all responses for this session
+  const [responsesRows] = await pool.execute(
+    'SELECT * FROM responses WHERE test_session_id = ?',
+    [sessionId]
+  );
+  const responses = responsesRows as Response[];
+
+  if (responses.length === 0) {
+    return { score: 0, correctCount: 0, totalQuestions: 0, results: [] };
+  }
+
+  // Get all corresponding questions
+  const questionIds = responses.map(r => r.question_id);
+  const [questionRows] = await pool.execute(
+    `SELECT id, correct_answer FROM questions WHERE id IN (${questionIds.map(() => '?').join(',')})`,
+    questionIds
+  );
+  const questions = questionRows as { id: number; correct_answer: string }[];
+
+  let correctCount = 0;
+  const results = responses.map(r => {
+    const q = questions.find(q => q.id === r.question_id);
+    const isCorrect = q && r.user_answer?.trim() === q.correct_answer?.trim();
+    if (isCorrect) correctCount++;
+    return {
+      question_id: r.question_id,
+      user_answer: r.user_answer,
+      correct_answer: q?.correct_answer,
+      is_correct: isCorrect
+    };
+  });
+
+  const totalQuestions = responses.length;
+  const score = Math.round((correctCount / totalQuestions) * 100);
+
+  return { score, correctCount, totalQuestions, results };
+}
+
 }

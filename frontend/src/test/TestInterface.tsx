@@ -27,6 +27,11 @@ const TestInterface: React.FC = () => {
   const [timeRemaining, setTimeRemaining] = useState<number>(64 * 60); // 64 minutes in seconds
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [testSession, setTestSession] = useState<any>(null);
+  
+  //Rama - ChatGPT
+  const [isReviewMode, setIsReviewMode] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [score, setScore] = useState<number | null>(null);
 
   // Load test session and questions
   useEffect(() => {
@@ -137,6 +142,72 @@ const TestInterface: React.FC = () => {
     navigate('/dashboard');
   };
 
+  // Rama - ChatGPT
+  const handleReviewAnswers = () => {
+  setIsReviewMode(true);
+  };
+
+  const handleSubmitTest = async () => {
+  try {
+    const token = localStorage.getItem('sat_token');
+    if (!token) throw new Error('Not authenticated');
+
+    // Send all user answers to backend
+    const submissions = Object.entries(userAnswers).map(([questionId, userAnswer], index) => ({
+      questionId: parseInt(questionId),
+      userAnswer,
+      sequenceNumber: index + 1,
+      timeSpent: 0,
+      isFlagged: flaggedQuestions.has(parseInt(questionId))
+    }));
+
+    for (const answer of submissions) {
+      await fetch(`http://localhost:5000/api/exams/sessions/${sessionId}/answers`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(answer)
+      });
+    }
+
+    // Optionally: mark the test complete in backend
+    await fetch(`http://localhost:5000/api/exams/sessions/${sessionId}/complete`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    // For now, mock scoring logic
+    const correctAnswers: { [key: number]: string } = {
+      1: 'B',
+      2: 'B',
+      3: 'C',
+      4: 'A',
+    };
+
+    let correctCount = 0;
+    Object.keys(correctAnswers).forEach(qid => {
+      const qNum = parseInt(qid);
+      if (userAnswers[qNum] === correctAnswers[qNum]) {
+        correctCount++;
+      }
+    });
+
+    setScore(correctCount);
+    setIsSubmitted(true);
+    setIsReviewMode(false);
+
+  } catch (error) {
+    console.error('Submit test error:', error);
+    alert('Failed to submit test. Please try again.');
+  }
+};
+  // End Rama - ChatGPT
+
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
@@ -231,6 +302,83 @@ const TestInterface: React.FC = () => {
   }
 
   const currentQuestionData = questions.find(q => q.id === currentQuestion);
+
+  if (isReviewMode) {
+  return (
+    <div style={containerStyle}>
+      <header style={headerStyle}>
+        <h2>Review Your Answers</h2>
+      </header>
+      <div style={{ padding: '2rem', overflowY: 'auto' }}>
+        {questions.map((q, idx) => (
+          <div key={q.id} style={{ marginBottom: '2rem', background: 'white', padding: '1rem', borderRadius: '8px' }}>
+            <h3>Question {idx + 1}</h3>
+            <p style={{ color: '#374151' }}>{q.question_text}</p>
+            {q.options.map((opt, i) => {
+              const letter = String.fromCharCode(65 + i);
+              const selected = userAnswers[q.id] === letter;
+              return (
+                <div key={i} style={{
+                  padding: '0.5rem 1rem',
+                  backgroundColor: selected ? '#dbeafe' : '#f9fafb',
+                  borderRadius: '6px',
+                  marginBottom: '0.25rem'
+                }}>
+                  {letter}. {opt}
+                </div>
+              );
+            })}
+          </div>
+        ))}
+        <button
+          style={{
+            backgroundColor: '#2563eb',
+            color: 'white',
+            padding: '0.75rem 1.5rem',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+          onClick={handleSubmitTest}
+        >
+          Submit Test
+        </button>
+      </div>
+    </div>
+  );
+}
+
+if (isSubmitted) {
+  return (
+    <div style={containerStyle}>
+      <header style={headerStyle}>
+        <h2>Test Results</h2>
+      </header>
+      <div style={{ textAlign: 'center', padding: '3rem' }}>
+        <h3>Your Score: {score} / {questions.length}</h3>
+        <p style={{ color: '#6b7280' }}>
+          Great work! Review your answers or return to dashboard.
+        </p>
+        <button
+          style={{
+            backgroundColor: '#2563eb',
+            color: 'white',
+            padding: '0.75rem 1.5rem',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+          onClick={() => navigate('/dashboard')}
+        >
+          Return to Dashboard
+        </button>
+      </div>
+    </div>
+  );
+}
+
 
   return (
     <div style={containerStyle}>
@@ -416,13 +564,13 @@ const TestInterface: React.FC = () => {
                   }}
                   onClick={() => {
                     if (currentQuestion < questions.length) {
-                      handleNavigation(currentQuestion + 1);
+                        handleNavigation(currentQuestion + 1);
                     } else {
-                      alert('This is the last question. In the next step, we\'ll add the submit functionality.');
+                        handleReviewAnswers();
                     }
-                  }}
+                }}
                 >
-                  {currentQuestion < questions.length ? 'Next →' : 'Review Answers'}
+                {currentQuestion < questions.length ? 'Next →' : 'Review Answers'}
                 </button>
               </div>
             </>
