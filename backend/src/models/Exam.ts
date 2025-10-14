@@ -181,13 +181,32 @@ export class TestSessionModel {
       [score, sessionId]
     );
   }
+
+  static async findByStatus(userId: number, examId: number, status: string): Promise<TestSession | null> {
+    const [rows] = await pool.execute(
+      'SELECT * FROM test_sessions WHERE user_id=? AND exam_id=? AND status=? ORDER BY id DESC LIMIT 1',
+      [userId, examId, status]
+    );
+    const list = rows as TestSession[];
+    return list.length ? list[0] : null;
+  }
 }
 
 export class ResponseModel {
   // Create or update response
   static async upsert(responseData: Omit<Response, 'id' | 'created_at'>): Promise<void> {
+    
     const { test_session_id, question_id, user_answer, time_spent, sequence_number, is_flagged } = responseData;
     
+    console.log("UPSERT values:", {
+      test_session_id,
+      question_id,
+      user_answer,
+      time_spent,
+      sequence_number,
+      is_flagged,
+    });
+
     // Check if response already exists
     const [existing] = await pool.execute(
       'SELECT id FROM responses WHERE test_session_id = ? AND question_id = ?',

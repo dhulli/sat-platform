@@ -113,14 +113,72 @@ const TestInterface: React.FC = () => {
     return () => clearInterval(timer);
   }, [timeRemaining]);
 
-  const handleAnswerSelect = (questionId: number, answer: string) => {
-    setUserAnswers(prev => ({
-      ...prev,
-      [questionId]: answer
-    }));
+  useEffect(() => {
+  const fetchState = async () => {
+    if (!sessionId) return;
+    try {
+        const token = localStorage.getItem('sat_token');
+        const res = await fetch(`http://localhost:5000/api/exams/sessions/${sessionId}/state`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+        });
+        const json = await res.json();
+        if (json.success) {
+          const { session, responses } = json.data;
+          if (session.status === 'paused') {
+            setTimeRemaining(session.time_remaining);
+          }
+          const ans: Record<number, string> = {};
+          responses.forEach((r: any) => (ans[r.question_id] = r.user_answer));
+          setUserAnswers(ans);
+          const flags = new Set<number>();
+          responses.forEach((r: any) => {
+            if (r.is_flagged) flags.add(r.question_id);
+          });
+          setFlaggedQuestions(flags);
+        }
+      } catch (err) {
+        console.error('Failed to fetch session state:', err);
+      }
+    };
+    fetchState();
+  }, [sessionId]);
+
+  // Save an answer immediately when chosen
+  const saveAnswer = async (questionId: number, userAnswer: string, isFlagged?: boolean) => {
+    if (!sessionId) return;
+    const token = localStorage.getItem("sat_token");
+    if (!token) return;
+
+    try {
+      await fetch(`http://localhost:5000/api/exams/sessions/${sessionId}/answers`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question_id: questionId,
+          user_answer: userAnswer,
+          time_spent: 0,
+          sequence_number: 0,
+          is_flagged: isFlagged ?? flaggedQuestions.has(questionId),
+        }),
+      });
+    } catch (err) {
+      console.error("Failed to save answer:", err);
+    }
   };
 
-  const handleFlagQuestion = (questionId: number) => {
+
+  const handleAnswerSelect = (questionId: number, answer: string) => {
+    setUserAnswers((prev) => ({ ...prev, [questionId]: answer }));
+    saveAnswer(questionId, answer); // persist right away
+  };
+
+  /*const handleFlagQuestion = (questionId: number) => {
     setFlaggedQuestions(prev => {
       const newSet = new Set(prev);
       if (newSet.has(questionId)) {
@@ -128,6 +186,21 @@ const TestInterface: React.FC = () => {
       } else {
         newSet.add(questionId);
       }
+      return newSet;
+    });
+  };*/
+
+  const handleFlagQuestion = (questionId: number) => {
+    setFlaggedQuestions(prev => {
+      const newSet = new Set(prev);
+      const willBeFlagged = !newSet.has(questionId); // what the next state will be
+
+      if (willBeFlagged) newSet.add(questionId);
+      else newSet.delete(questionId);
+
+      // Persist using the *new* flag value
+      saveAnswer(questionId, userAnswers[questionId] || "", willBeFlagged);
+
       return newSet;
     });
   };
@@ -146,6 +219,30 @@ const TestInterface: React.FC = () => {
   const handleReviewAnswers = () => {
   setIsReviewMode(true);
   };
+
+  const handleExitTest = async () => {
+    if (!sessionId) return;
+    const confirmExit = window.confirm('Exit test? Progress will be saved.');
+    if (!confirmExit) return;
+
+    try {
+      const token = localStorage.getItem('sat_token');
+      if (!token) throw new Error('Not authenticated');
+      await fetch(`http://localhost:5000/api/exams/sessions/${sessionId}/pause`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ time_remaining: timeRemaining }),
+      });
+    } catch (e) {
+      console.error('Pause failed', e);
+    } finally {
+      navigate('/dashboard');
+    }
+  };
+
 
   const handleSubmitTest = async () => {
   try {
@@ -407,11 +504,7 @@ if (isSubmitted) {
               cursor: 'pointer',
               fontWeight: 'bold'
             }}
-            onClick={() => {
-              if (window.confirm('Are you sure you want to exit the test? Your progress will be saved.')) {
-                navigate('/dashboard');
-              }
-            }}
+            onClick={() => handleExitTest()}
           >
             Exit Test
           </button>

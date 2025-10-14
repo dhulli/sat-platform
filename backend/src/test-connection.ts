@@ -17,6 +17,10 @@ async function testDatabaseConnection() {
     const [exams] = await connection.execute('SELECT * from exams');
     console.log('✅ Basic query test2:', exams);
 
+    // Test questions query
+    const [questions] = await connection.execute('SELECT * from questions');
+    console.log('✅ Basic query test2:', questions);
+
     // Test session query
     const [users] = await connection.execute('SELECT * from test_sessions');
     console.log('✅ Basic query test2:', users);
@@ -38,6 +42,10 @@ async function testDatabaseConnection() {
     (tables as any[]).forEach(table => {
       console.log(`   - ${table.TABLE_NAME}`);
     });
+
+    // Test responses query
+    const [responses] = await connection.execute('SELECT * from responses');
+    console.log('✅ Basic query test2:', responses);
     
   } catch (error) {
     console.error('❌ Database connection failed:');

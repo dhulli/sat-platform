@@ -14,8 +14,11 @@ router.post('/:examId/start', ExamController.startTest);
 // Test session routes
 router.get('/sessions/:sessionId', ExamController.getSessionStatus);
 router.get('/sessions/:sessionId/modules/:module/questions', ExamController.getModuleQuestions);
+router.post('/sessions/:sessionId/answers', ExamController.saveOrUpdateAnswer);
 router.post('/sessions/:sessionId/answers', ExamController.submitAnswer);
 router.post('/sessions/:sessionId/complete', ExamController.completeTest);
+router.post('/sessions/:sessionId/pause', ExamController.pauseSession);
+router.get('/sessions/:sessionId/state', ExamController.getSessionState);
 
 
 export default router;

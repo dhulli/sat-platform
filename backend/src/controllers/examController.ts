@@ -67,6 +67,13 @@ export class ExamController {
         });
       }
 
+      // before creating new session
+      const existingPaused = await TestSessionModel.findByStatus(req.user.userId, parseInt(examId), 'paused');
+      if (existingPaused && existingPaused.id) {
+        await TestSessionModel.update(existingPaused.id, { status: 'in_progress' });
+        return res.json({ success: true, data: { session: existingPaused, resumed: true } });
+      }
+
       // Create new session
       const session = await TestSessionModel.create({
         user_id: req.user.userId,
@@ -143,6 +150,50 @@ export class ExamController {
     }
   }
 
+  // Save or update an answer (autosave)
+  static async saveOrUpdateAnswer(req: Request, res: Response) {
+    try {
+      if (!req.user) return res.status(401).json({ success: false, message: 'Authentication required' });
+
+      const { sessionId } = req.params;
+      const {
+        question_id,
+        user_answer,
+        time_spent,
+        sequence_number,
+        is_flagged
+      } = req.body;
+
+      console.log("Received body:", req.body);
+      console.log("Parsed values:", {
+        sessionId,
+        question_id,
+        user_answer,
+        time_spent,
+        sequence_number,
+        is_flagged,
+      });
+
+      if (!question_id || !user_answer) {
+        return res.status(400).json({ success: false, message: 'Missing question_id or user_answer' });
+      }
+      
+      await ResponseModel.upsert({
+        test_session_id: Number(sessionId),
+        question_id: question_id,
+        user_answer: user_answer,
+        time_spent: time_spent ?? 0,
+        sequence_number: sequence_number ?? 0,
+        is_flagged: is_flagged ?? false
+      });
+      return res.json({ success: true });
+    } catch (err) {
+      console.error('saveOrUpdateAnswer error:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+  }
+
+
   // Submit answer
   static async submitAnswer(req: Request, res: Response) {
     try {
@@ -154,7 +205,24 @@ export class ExamController {
       }
 
       const { sessionId } = req.params;
-      const { questionId, userAnswer, timeSpent, sequenceNumber, isFlagged } = req.body;
+      //const { questionId, userAnswer, timeSpent, sequenceNumber, isFlagged } = req.body;
+      const {
+        question_id,
+        user_answer,
+        time_spent,
+        sequence_number,
+        is_flagged
+      } = req.body;
+
+      console.log("Received body:", req.body);
+      console.log("Parsed values:", {
+        sessionId,
+        question_id,
+        user_answer,
+        time_spent,
+        sequence_number,
+        is_flagged,
+      });
 
       // Verify session belongs to user
       const session = await TestSessionModel.findById(parseInt(sessionId));
@@ -167,11 +235,11 @@ export class ExamController {
 
       await ResponseModel.upsert({
         test_session_id: parseInt(sessionId),
-        question_id: questionId,
-        user_answer: userAnswer,
-        time_spent: timeSpent,
-        sequence_number: sequenceNumber,
-        is_flagged: isFlagged || false
+        question_id: question_id,
+        user_answer: user_answer,
+        time_spent: time_spent,
+        sequence_number: sequence_number,
+        is_flagged: is_flagged || false
       });
 
       res.json({
@@ -253,5 +321,57 @@ export class ExamController {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 }
+
+static async pauseSession(req: Request, res: Response) {
+  console.log("🔥 Hit pauseSession endpoint with body:", req.body);
+  try {
+    if (!req.user) return res.status(401).json({ success: false, message: 'Auth required' });
+
+    const { sessionId } = req.params;
+    const { time_remaining } = req.body;
+    
+
+    const session = await TestSessionModel.findById(Number(sessionId));
+    console.log('User in pauseSession:', req.user);
+    console.log('Session in DB:', session);
+    if (!session) return res.status(404).json({ success: false, message: 'Session not found' });
+    if (session.user_id !== (req.user as any).userId)
+      return res.status(403).json({ success: false, message: 'Forbidden' });
+
+    await TestSessionModel.update(Number(sessionId), {
+      status: 'paused',
+      time_remaining: time_remaining ?? session.time_remaining,
+    });
+
+    const updated = await TestSessionModel.findById(Number(sessionId));
+    res.json({ success: true, message: 'Session paused', data: { session: updated } });
+  } catch (err) {
+    console.error('pauseSession error', err);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+}
+
+static async getSessionState(req: Request, res: Response) {
+  try {
+    if (!req.user) return res.status(401).json({ success: false, message: 'Auth required' });
+
+    const { sessionId } = req.params;
+    const session = await TestSessionModel.findById(Number(sessionId));
+    if (!session) return res.status(404).json({ success: false, message: 'Session not found' });
+    if (session.user_id !== (req.user as any).userId)
+      return res.status(403).json({ success: false, message: 'Forbidden' });
+
+    const responses = await ResponseModel.getBySession(Number(sessionId));
+
+    res.json({
+      success: true,
+      data: { session, responses },
+    });
+  } catch (err) {
+    console.error('getSessionState error', err);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+}
+
 
 }
