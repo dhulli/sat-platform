@@ -121,6 +121,8 @@ export class ExamController {
           message: 'Test session not found'
         });
       }
+      
+      console.log("Fetching questions for exam:", session.exam_id, "module:", module);
 
       const questions = await ExamModel.getQuestionsByModule(
         session.exam_id,
@@ -372,6 +374,5 @@ static async getSessionState(req: Request, res: Response) {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 }
-
 
 }

@@ -42,53 +42,26 @@ const TestInterface: React.FC = () => {
         const session = await getSessionStatus(parseInt(sessionId));
         setTestSession(session);
 
-        const mockQuestions: Question[] = [
-          {
-            id: 1,
-            exam_id: 1,
-            module: "reading_writing_1",
-            difficulty: 3,
-            skill_category: "Words in Context",
-            question_text:
-              'The author uses the word "ubiquitous" to suggest that the phenomenon is:',
-            options: [
-              "rare and unusual",
-              "widespread and common",
-              "complex and confusing",
-              "temporary and fleeting",
-            ],
-          },
-          {
-            id: 2,
-            exam_id: 1,
-            module: "reading_writing_1",
-            difficulty: 2,
-            skill_category: "Command of Evidence",
-            question_text:
-              "Which choice provides the best evidence for the answer to the previous question?",
-            options: ["Lines 5-8", "Lines 12-15", "Lines 20-23", "Lines 30-33"],
-          },
-          {
-            id: 3,
-            exam_id: 1,
-            module: "math_1",
-            difficulty: 2,
-            skill_category: "Algebra",
-            question_text: "If 3x + 5 = 20, what is the value of x?",
-            options: ["3", "4", "5", "6"],
-          },
-          {
-            id: 4,
-            exam_id: 1,
-            module: "math_1",
-            difficulty: 4,
-            skill_category: "Advanced Math",
-            question_text: "What is the solution to the equation x² - 5x + 6 = 0?",
-            options: ["x = 2, 3", "x = 1, 6", "x = -2, -3", "x = -1, -6"],
-          },
-        ];
+        const module = "reading_writing_1"; // default for now
+        const token = localStorage.getItem("sat_token");
 
-        setQuestions(mockQuestions);
+        const res = await fetch(
+          `http://localhost:5000/api/exams/sessions/${sessionId}/modules/${module}/questions`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const json = await res.json();
+        if (json.success) {
+          setQuestions(json.data.questions);
+        } else {
+          throw new Error("Failed to load questions");
+        }
+
         setIsLoading(false);
       } catch (error) {
         console.error("Error loading test data:", error);
@@ -99,6 +72,12 @@ const TestInterface: React.FC = () => {
 
     loadTestData();
   }, [sessionId, getSessionStatus, navigate]);
+
+  useEffect(() => {
+    if (questions.length > 0) {
+      setCurrentQuestion(questions[0].id);
+    }
+  }, [questions]);
 
   // ---------- Timer ----------
   useEffect(() => {

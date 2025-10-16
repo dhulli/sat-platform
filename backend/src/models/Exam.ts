@@ -68,8 +68,8 @@ export class ExamModel {
 
   // Get questions for an exam module
   static async getQuestionsByModule(
-    examId: number, 
-    module: string, 
+    examId: number,
+    module: string,
     difficulty?: string
   ): Promise<Question[]> {
     let query = `
@@ -79,24 +79,20 @@ export class ExamModel {
     const params: any[] = [examId, module];
 
     if (difficulty) {
-      query += ' AND difficulty = ?';
+      query += " AND difficulty = ?";
       params.push(difficulty);
     }
 
-    query += ' ORDER BY id';
+    query += " ORDER BY id";
 
     const [rows] = await pool.execute(query, params);
-    return rows as Question[];
-  }
+    const questions = (rows as Question[]).map((q: any) => ({
+      ...q,
+      options:
+        typeof q.options === "string" ? JSON.parse(q.options) : q.options,
+    }));
 
-  // Get question by ID
-  static async getQuestionById(questionId: number): Promise<Question | null> {
-    const [rows] = await pool.execute(
-      'SELECT * FROM questions WHERE id = ?',
-      [questionId]
-    );
-    const questions = rows as Question[];
-    return questions.length > 0 ? questions[0] : null;
+    return questions;
   }
 }
 
@@ -189,7 +185,7 @@ export class TestSessionModel {
     );
     const list = rows as TestSession[];
     return list.length ? list[0] : null;
-  }
+  }  
 }
 
 export class ResponseModel {
