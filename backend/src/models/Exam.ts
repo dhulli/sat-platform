@@ -27,12 +27,28 @@ export interface TestSession {
   id?: number;
   user_id: number;
   exam_id: number;
-  module1_score?: number;
+
+  // --- Reading & Writing ---
+  module1_score?: number;                 // RW1
+  rw2_score?: number;                     // RW2
   module2_difficulty?: 'easy' | 'medium' | 'hard';
+
+  // --- Math ---
+  math1_score?: number;
+  math2_score?: number;
+  math2_difficulty?: 'easy' | 'medium' | 'hard';
+
+  // --- Scaled section & total scores ---
+  rw_score?: number;                      // scaled 200–800
+  math_score?: number;                    // scaled 200–800
+  total_score?: number;                   // total 400–1600
+
+  // --- General session data ---
   status: 'in_progress' | 'completed' | 'paused';
   started_at?: Date;
   completed_at?: Date;
   time_remaining: number;
+  current_module?: string;
   created_at?: Date;
 }
 
@@ -73,27 +89,33 @@ export class ExamModel {
     difficulty?: string
   ): Promise<Question[]> {
     let query = `
-      SELECT * FROM questions 
+      SELECT *
+      FROM questions
       WHERE exam_id = ? AND module = ?
     `;
     const params: any[] = [examId, module];
 
+    // Difficulty band mapping
     if (difficulty) {
-      query += " AND difficulty = ?";
-      params.push(difficulty);
+      const label = String(difficulty).toLowerCase();
+      if (label === 'easy') query += ' AND difficulty <= 2';
+      else if (label === 'medium') query += ' AND difficulty = 3';
+      else if (label === 'hard') query += ' AND difficulty >= 4';
+      // if someone passes numeric, we let it slide and don’t add extra filter
     }
 
-    query += " ORDER BY id";
+    query += ' ORDER BY id';
 
     const [rows] = await pool.execute(query, params);
-    const questions = (rows as Question[]).map((q: any) => ({
+    // Ensure options is a parsed array
+    const list = (rows as any[]).map(q => ({
       ...q,
-      options:
-        typeof q.options === "string" ? JSON.parse(q.options) : q.options,
-    }));
+      options: typeof q.options === 'string' ? JSON.parse(q.options) : q.options,
+    })) as Question[];
 
-    return questions;
+    return list;
   }
+
 }
 
 export class TestSessionModel {
@@ -278,5 +300,75 @@ export class ResponseModel {
 
   return { score, correctCount, totalQuestions, results };
 }
+
+// Grade by module prefix (e.g., 'reading_writing_1')
+static async gradeSessionByModule(sessionId: number, module: string): Promise<{
+  correctCount: number; totalQuestions: number; percent: number;
+}> {
+  const [rows] = await pool.execute(
+    `SELECT r.question_id, r.user_answer, q.correct_answer
+     FROM responses r
+     JOIN questions q ON q.id = r.question_id
+     WHERE r.test_session_id = ? AND q.module = ?`,
+    [sessionId, module]
+  );
+  const list = rows as { question_id: number; user_answer: string | null; correct_answer: string }[];
+  const totalQuestions = list.length;
+  const correctCount = list.filter(r => (r.user_answer || '').trim() === (r.correct_answer || '').trim()).length;
+  const percent = totalQuestions ? correctCount / totalQuestions : 0;
+  return { correctCount, totalQuestions, percent };
+}
+
+// Grade a whole section (rw or math across both modules)
+static async gradeSection(sessionId: number, section: 'rw' | 'math'): Promise<{
+  correctCount: number; totalQuestions: number; percent: number;
+}> {
+  const modules = section === 'rw'
+    ? ['reading_writing_1', 'reading_writing_2']
+    : ['math_1', 'math_2'];
+
+  const [rows] = await pool.execute(
+    `SELECT r.question_id, r.user_answer, q.correct_answer
+     FROM responses r
+     JOIN questions q ON q.id = r.question_id
+     WHERE r.test_session_id = ?
+       AND q.module IN (?, ?)`,
+    [sessionId, modules[0], modules[1]]
+  );
+
+  const list = rows as { question_id: number; user_answer: string | null; correct_answer: string }[];
+  const totalQuestions = list.length;
+  const correctCount = list.filter(r => (r.user_answer || '').trim() === (r.correct_answer || '').trim()).length;
+  const percent = totalQuestions ? correctCount / totalQuestions : 0;
+  return { correctCount, totalQuestions, percent };
+}
+
+// Very simple linear scale to 800 (replace with real concordance later)
+static scaleTo800(percent: number): number {
+  const raw = Math.round(percent * 800);
+  return Math.max(0, Math.min(800, raw));
+}
+
+// --- Section Scoring Helper ---
+static computeSectionScore(
+  module1Percent: number,
+  module2Percent: number,
+  module2Difficulty: 'easy' | 'medium' | 'hard'
+): number {
+  const w1 = 0.4;
+  const w2 = 0.6;
+
+  const difficultyAdj =
+    module2Difficulty === 'hard' ? 0.03 :
+    module2Difficulty === 'easy' ? -0.03 : 0;
+
+  const combined = Math.min(
+    Math.max(module1Percent * w1 + module2Percent * w2 + difficultyAdj, 0),
+    1
+  );
+
+  return Math.round(200 + 600 * combined);
+}
+
 
 }

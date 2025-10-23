@@ -18,12 +18,12 @@ async function testDatabaseConnection() {
     console.log('✅ Basic query exams:', exams);
 
     // Test questions query
-    const [questions] = await connection.execute('SELECT * from questions');
-    console.log('✅ Basic query questions:', questions);
+    /*const [questions] = await connection.execute('SELECT * from questions');
+    console.log('✅ Basic query questions:', questions);*/
 
     // Test session query
-    /*const [users] = await connection.execute('SELECT * from test_sessions');
-    console.log('✅ Basic query test_sessions:', users);*/
+    const [users] = await connection.execute('SELECT * from test_sessions');
+    console.log('✅ Basic query test_sessions:', users);
     
     // Check if database exists
     const [dbResult] = await connection.execute(
