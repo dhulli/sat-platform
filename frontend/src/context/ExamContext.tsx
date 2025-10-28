@@ -20,14 +20,24 @@ interface TestSession {
   time_remaining: number;
 }
 
+// new interface describing both normal and confirmation responses
+interface StartExamResponse {
+  session?: TestSession;
+  existingSession?: TestSession;
+  requiresConfirmation?: boolean;
+  resumed?: boolean;
+  message?: string;
+}
+
 interface ExamContextType {
   exams: Exam[];
   currentSession: TestSession | null;
   loading: boolean;
   loadExams: () => Promise<void>;
-  startExam: (examId: number) => Promise<TestSession>;
+  startExam: (examId: number, forceNew?: boolean) => Promise<StartExamResponse | TestSession>;
   getSessionStatus: (sessionId: number) => Promise<TestSession>;
 }
+
 
 const ExamContext = createContext<ExamContextType | undefined>(undefined);
 
@@ -87,9 +97,12 @@ export const ExamProvider: React.FC<ExamProviderProps> = ({ children }) => {
     }
   };
 
-  const startExam = async (examId: number): Promise<TestSession> => {
+  const startExam = async (examId: number, forceNew = false): Promise<StartExamResponse> => {
     const token = localStorage.getItem('sat_token');
-    const response = await fetch(`http://localhost:5000/api/exams/${examId}/start`, {
+    if (!token) throw new Error('No authentication token found');
+
+    const url = `http://localhost:5000/api/exams/${examId}/start${forceNew ? '?forceNew=true' : ''}`;
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -98,13 +111,14 @@ export const ExamProvider: React.FC<ExamProviderProps> = ({ children }) => {
     });
 
     const result = await response.json();
+    if (!response.ok) throw new Error(result.message || 'Failed to start exam');
 
-    if (!response.ok) {
-      throw new Error(result.message || 'Failed to start exam');
+    // backend now may return { session }, or { requiresConfirmation, existingSession }
+    if (result.data.session) {
+      setCurrentSession(result.data.session);
     }
 
-    setCurrentSession(result.data.session);
-    return result.data.session;
+    return result.data as StartExamResponse;
   };
 
   const getSessionStatus = async (sessionId: number): Promise<TestSession> => {

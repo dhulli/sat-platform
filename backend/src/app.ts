@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 import { initializeDatabase } from './models/initDatabase';
 import authRoutes from './routes/auth';
 import examRoutes from './routes/exams';
+import analyticsRoutes from './routes/analytics';
+
 
 dotenv.config();
 
@@ -21,6 +23,7 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/exams', examRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -60,6 +63,7 @@ async function startServer() {
       console.log(`🔗 Health check: http://localhost:${PORT}/health`);
       console.log(`🔗 Auth routes: http://localhost:${PORT}/api/auth`);
       console.log(`🔗 Exam routes: http://localhost:${PORT}/api/exams`);
+      console.log(`🔗 Analytics routes: http://localhost:${PORT}/api/analytics`);
     });
   } catch (error) {
     console.error('Failed to start server:', error);

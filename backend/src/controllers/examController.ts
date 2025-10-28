@@ -36,66 +36,67 @@ export class ExamController {
       if (!req.user) {
         return res.status(401).json({
           success: false,
-          message: 'Authentication required'
+          message: "Authentication required",
         });
       }
 
       const { examId } = req.params;
+      const forceNew = req.query.forceNew === "true"; // ?forceNew=true from frontend
 
-      // Check if exam exists
-      const exam = await ExamModel.findById(parseInt(examId));
+      // 1️⃣ Validate exam
+      const exam = await ExamModel.findById(Number(examId));
       if (!exam) {
         return res.status(404).json({
           success: false,
-          message: 'Exam not found'
+          message: "Exam not found",
         });
       }
 
-      // Check for existing active session
-      const existingSession = await TestSessionModel.findActiveSession(
+      // 2️⃣ Find any existing session (active or paused)
+      const existing = await TestSessionModel.findLatestForExam(
         req.user.userId,
-        parseInt(examId)
+        Number(examId)
       );
 
-      if (existingSession) {
+      if (existing && !forceNew && (existing.status === "in_progress" || existing.status === "paused")) {
+        // Don't resume automatically — let frontend decide
         return res.json({
           success: true,
           data: {
-            session: existingSession,
-            resumed: true
-          }
+            existingSession: existing,
+            requiresConfirmation: true,
+            message: "An existing session is available. Resume or start new?",
+          },
         });
       }
 
-      // before creating new session
-      const existingPaused = await TestSessionModel.findByStatus(req.user.userId, parseInt(examId), 'paused');
-      if (existingPaused && existingPaused.id) {
-        await TestSessionModel.update(existingPaused.id, { status: 'in_progress' });
-        return res.json({ success: true, data: { session: existingPaused, resumed: true } });
+      // 3️⃣ If user chose "start new", delete the paused/old one
+      if (existing && forceNew) {
+        await TestSessionModel.deleteById(existing.id);
       }
 
-      // Create new session
+      // 4️⃣ Create a fresh session
       const session = await TestSessionModel.create({
         user_id: req.user.userId,
-        exam_id: parseInt(examId),
-        status: 'in_progress',
-        time_remaining: 64 * 60 // 64 minutes for first module
+        exam_id: Number(examId),
+        status: "in_progress",
+        time_remaining: 64 * 60, // 64 minutes for first module
+        current_module: "reading_writing_1",
       });
 
-      res.status(201).json({
+      return res.status(201).json({
         success: true,
-        message: 'Test session started',
+        message: "Test session started",
         data: {
           session,
-          resumed: false
-        }
+          resumed: false,
+        },
       });
-
     } catch (error) {
-      console.error('Start test error:', error);
+      console.error("Start test error:", error);
       res.status(500).json({
         success: false,
-        message: 'Internal server error'
+        message: "Internal server error",
       });
     }
   }
@@ -392,85 +393,91 @@ static async getSessionState(req: Request, res: Response) {
 static async completeModule(req: Request, res: Response) {
   try {
     if (!req.user)
-      return res.status(401).json({ success: false, message: 'Authentication required' });
+      return res.status(401).json({ success: false, message: "Authentication required" });
 
     const { sessionId, module } = req.params;
     if (!module)
-      return res.status(400).json({ success: false, message: 'Missing module' });
+      return res.status(400).json({ success: false, message: "Missing module" });
 
     const session = await TestSessionModel.findById(Number(sessionId));
     if (!session || session.user_id !== req.user.userId)
-      return res.status(404).json({ success: false, message: 'Test session not found' });
+      return res.status(404).json({ success: false, message: "Test session not found" });
 
-    // --- Grade this module ---
+    // --- Grade current module ---
     const { correctCount, totalQuestions, percent } =
       await ResponseModel.gradeSessionByModule(Number(sessionId), module);
-    console.log('grading result:', { correctCount, totalQuestions, percent });
+    console.log("grading result:", { correctCount, totalQuestions, percent });
 
-    // --- Determine adaptive difficulty ---
-    let nextDifficulty: 'easy' | 'medium' | 'hard';
-    if (percent < 0.4) nextDifficulty = 'easy';
-    else if (percent < 0.75) nextDifficulty = 'medium';
-    else nextDifficulty = 'hard';
+    let nextDifficulty: "easy" | "medium" | "hard";
+    if (percent < 0.4) nextDifficulty = "easy";
+    else if (percent < 0.75) nextDifficulty = "medium";
+    else nextDifficulty = "hard";
 
+    const updates: any = {};
     let nextModule: string | null = null;
-    const updates: any = { current_module: module };
 
-    // --- Reading/Writing adaptive flow ---
-    if (module === 'reading_writing_1') {
-      nextModule = 'reading_writing_2';
-      updates.module1_score = Math.round(percent * 100);
-      updates.module2_difficulty = nextDifficulty;
+    // --- RW adaptive ---
+    if (module === "reading_writing_1") {
+      nextModule = "reading_writing_2";
+      if (session.module1_score == null)
+        Object.assign(updates, {
+          module1_score: Math.round(percent * 100),
+          module2_difficulty: nextDifficulty,
+        });
       updates.current_module = nextModule;
-    } else if (module === 'reading_writing_2') {
-      nextModule = 'math_1';
-      updates.rw2_score = Math.round(percent * 100);
+    } else if (module === "reading_writing_2") {
+      nextModule = "math_1";
+      if (session.rw2_score == null)
+        updates.rw2_score = Math.round(percent * 100);
       updates.current_module = nextModule;
     }
 
-    // --- Math adaptive flow ---
-    else if (module === 'math_1') {
-      nextModule = 'math_2';
-      updates.math1_score = Math.round(percent * 100);
-      updates.math2_difficulty = nextDifficulty;
+    // --- Math adaptive ---
+    else if (module === "math_1") {
+      nextModule = "math_2";
+      if (session.math1_score == null)
+        Object.assign(updates, {
+          math1_score: Math.round(percent * 100),
+          math2_difficulty: nextDifficulty,
+        });
       updates.current_module = nextModule;
-    } else if (module === 'math_2') {
-      updates.math2_score = Math.round(percent * 100);
-      updates.status = 'completed';
+    } else if (module === "math_2") {
+      if (session.math2_score == null)
+        updates.math2_score = Math.round(percent * 100);
+      updates.status = "completed";
       updates.completed_at = new Date();
       nextModule = null;
     }
 
-    // --- Save updates for this module ---
     await TestSessionModel.update(Number(sessionId), updates);
 
-    // --- Compute section-level and total scores ---
-    const sess = await TestSessionModel.findById(Number(sessionId));
-    if (sess) {
-      // ✅ Reading & Writing section complete → compute scaled 800
-      if (module.startsWith('reading_writing') && sess.module1_score && sess.rw2_score && sess.id) {
+    // 🔒 re-fetch after DB write
+    const fresh = await TestSessionModel.findById(Number(sessionId));
+    if (!fresh) throw new Error("Session disappeared mid-update");
+
+   // --- Compute section & total once, no overwrites ---
+    if (module.startsWith("reading_writing")) {
+      if (fresh.module1_score != null && fresh.rw2_score != null && fresh.rw_score == null) {
         const rwScaled = ResponseModel.computeSectionScore(
-          sess.module1_score / 100,
-          sess.rw2_score / 100,
-          sess.module2_difficulty as 'easy' | 'medium' | 'hard'
+          fresh.module1_score / 100,
+          fresh.rw2_score / 100,
+          fresh.module2_difficulty as "easy" | "medium" | "hard"
         );
-        await TestSessionModel.update(sess.id, { rw_score: rwScaled });
+        await TestSessionModel.update(fresh.id, { rw_score: rwScaled });
       }
-
-      // ✅ Math section complete → compute scaled 800 and total
-      if (module.startsWith('math') && sess.math1_score && sess.math2_score && sess.id) {
+    }
+    else if (module.startsWith("math")) {
+      if (fresh.math1_score != null && fresh.math2_score != null && fresh.math_score == null) {
         const mathScaled = ResponseModel.computeSectionScore(
-          sess.math1_score / 100,
-          sess.math2_score / 100,
-          sess.math2_difficulty as 'easy' | 'medium' | 'hard'
+          fresh.math1_score / 100,
+          fresh.math2_score / 100,
+          fresh.math2_difficulty as "easy" | "medium" | "hard"
         );
-
-        const totalScaled = (sess.rw_score ?? 0) + mathScaled;
-
-        await TestSessionModel.update(sess.id, {
+        const totalScaled = (fresh.rw_score ?? 0) + mathScaled;
+        await TestSessionModel.update(fresh.id, {
           math_score: mathScaled,
           total_score: totalScaled,
-          status: 'completed',
+          status: "completed",
           completed_at: new Date(),
         });
       }
@@ -478,7 +485,7 @@ static async completeModule(req: Request, res: Response) {
 
     return res.json({
       success: true,
-      message: 'Module completed',
+      message: "Module completed",
       data: {
         module,
         correctCount,
@@ -489,8 +496,8 @@ static async completeModule(req: Request, res: Response) {
       },
     });
   } catch (err) {
-    console.error('completeModule error', err);
-    return res.status(500).json({ success: false, message: 'Internal server error' });
+    console.error("completeModule error", err);
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
 

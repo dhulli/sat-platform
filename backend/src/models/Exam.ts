@@ -24,7 +24,7 @@ export interface Question {
 }
 
 export interface TestSession {
-  id?: number;
+  id: number;
   user_id: number;
   exam_id: number;
 
@@ -171,6 +171,7 @@ export class TestSessionModel {
 
     if (fields.length > 0) {
       values.push(id);
+      console.log("[TestSessionModel.update] id=%s fields=%o", id, fields.join(", "), values);
       await pool.execute(
         `UPDATE test_sessions SET ${fields.join(', ')} WHERE id = ?`,
         values
@@ -207,7 +208,22 @@ export class TestSessionModel {
     );
     const list = rows as TestSession[];
     return list.length ? list[0] : null;
-  }  
+  }
+  
+  static async findLatestForExam(userId: number, examId: number) {
+    const [rows] = await pool.execute(
+      `SELECT * FROM test_sessions
+      WHERE user_id = ? AND exam_id = ?
+      ORDER BY created_at DESC
+      LIMIT 1`,
+      [userId, examId]
+    );
+    return (rows as TestSession[])[0] || null;
+  }
+
+  static async deleteById(id: number) {
+    await pool.execute(`DELETE FROM test_sessions WHERE id = ?`, [id]);
+  }
 }
 
 export class ResponseModel {
@@ -302,20 +318,97 @@ export class ResponseModel {
 }
 
 // Grade by module prefix (e.g., 'reading_writing_1')
-static async gradeSessionByModule(sessionId: number, module: string): Promise<{
-  correctCount: number; totalQuestions: number; percent: number;
-}> {
-  const [rows] = await pool.execute(
-    `SELECT r.question_id, r.user_answer, q.correct_answer
-     FROM responses r
-     JOIN questions q ON q.id = r.question_id
-     WHERE r.test_session_id = ? AND q.module = ?`,
-    [sessionId, module]
+static async gradeSessionByModule(
+  sessionId: number,
+  module: string
+): Promise<{ correctCount: number; totalQuestions: number; percent: number }> {
+  // 1) Get exam_id and stored adaptive difficulties from session
+  const [sessRows] = await pool.execute(
+    `SELECT exam_id, module2_difficulty, math2_difficulty
+       FROM test_sessions
+      WHERE id = ?`,
+    [sessionId]
   );
-  const list = rows as { question_id: number; user_answer: string | null; correct_answer: string }[];
-  const totalQuestions = list.length;
-  const correctCount = list.filter(r => (r.user_answer || '').trim() === (r.correct_answer || '').trim()).length;
+  if ((sessRows as any[]).length === 0) {
+    throw new Error(`Session ${sessionId} not found`);
+  }
+  const { exam_id, module2_difficulty, math2_difficulty } = (sessRows as any)[0];
+
+  // 2) For *_2 modules, decide numeric difficulty range from stored label
+  const diffLabel =
+    module === 'reading_writing_2' ? module2_difficulty
+    : module === 'math_2' ? math2_difficulty
+    : null;
+
+  const difficultyRange: [number, number] | null = (() => {
+    if (!diffLabel) return null;
+    const t = String(diffLabel).toLowerCase();
+    if (t === 'easy') return [1, 2];
+    if (t === 'medium') return [3, 3];
+    if (t === 'hard') return [4, 5];
+    return null;
+  })();
+
+  // 3) Get the set of question ids for THIS module (and difficulty filter if *_2)
+  const qSql = `
+    SELECT id, correct_answer
+      FROM questions
+     WHERE exam_id = ?
+       AND module = ?
+       ${difficultyRange ? 'AND (CAST(difficulty AS SIGNED) BETWEEN ? AND ?)' : ''}
+  `;
+  const qParams = difficultyRange
+    ? [exam_id, module, difficultyRange[0], difficultyRange[1]]
+    : [exam_id, module];
+
+  const [qRows] = await pool.execute(qSql, qParams);
+  const questions = qRows as { id: number; correct_answer: string }[];
+
+  const totalQuestions = questions.length;
+  if (totalQuestions === 0) {
+    // No questions for that module/range: return 0 safely
+    console.warn(`gradeSessionByModule: no questions for exam ${exam_id}, module ${module}, range ${difficultyRange ?? 'n/a'}`);
+    return { correctCount: 0, totalQuestions: 0, percent: 0 };
+  }
+
+  const questionIds = questions.map(q => q.id);
+
+  // 4) Pull responses for this session limited to that question set
+  //    If you ever store multiple responses per question, select the latest here.
+  const placeholders = questionIds.map(() => '?').join(',');
+  const [rRows] = await pool.execute(
+    `
+      SELECT r.question_id, r.user_answer
+        FROM responses r
+       WHERE r.test_session_id = ?
+         AND r.question_id IN (${placeholders})
+    `,
+    [sessionId, ...questionIds]
+  );
+  const responses = rRows as { question_id: number; user_answer: string | null }[];
+
+  // 5) Build a quick map of correct answers
+  const correctMap = new Map<number, string>(
+    questions.map(q => [q.id, (q.correct_answer ?? '').trim().toUpperCase()])
+  );
+
+  // 6) Count correct only among the module’s questions
+  let correctCount = 0;
+  for (const r of responses) {
+    const ua = (r.user_answer ?? '').trim().toUpperCase();
+    const ca = correctMap.get(r.question_id);
+    if (!ca) continue; // question not in this module set
+    if (ua && ua === ca) correctCount++;
+  }
+
   const percent = totalQuestions ? correctCount / totalQuestions : 0;
+
+  console.log(
+    `✅ Graded exam ${exam_id}, ${module}${
+      difficultyRange ? ` (${diffLabel} → ${difficultyRange[0]}-${difficultyRange[1]})` : ''
+    }: ${correctCount}/${totalQuestions} = ${(percent * 100).toFixed(2)}%`
+  );
+
   return { correctCount, totalQuestions, percent };
 }
 

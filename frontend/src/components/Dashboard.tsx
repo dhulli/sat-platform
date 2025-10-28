@@ -17,7 +17,7 @@ const Dashboard: React.FC = () => {
     };
     
     loadExamsOnce();
-  }, []); // Empty dependency array - runs only once
+  }, [exams.length, loading, loadExams]);
 
   const handleLogout = () => {
     logout();
@@ -25,11 +25,82 @@ const Dashboard: React.FC = () => {
 
   const handleStartExam = async (examId: number, examName: string) => {
     try {
-      const session = await startExam(examId);
-      // Navigate to test interface instead of showing alert
+      const response: any = await startExam(examId);
+
+      if (response.requiresConfirmation && response.existingSession) {
+        // create a simple custom dialog instead of window.confirm
+        const modal = document.createElement("div");
+        modal.style.position = "fixed";
+        modal.style.top = "0";
+        modal.style.left = "0";
+        modal.style.width = "100vw";
+        modal.style.height = "100vh";
+        modal.style.background = "rgba(0,0,0,0.5)";
+        modal.style.display = "flex";
+        modal.style.justifyContent = "center";
+        modal.style.alignItems = "center";
+        modal.style.zIndex = "9999";
+
+        const box = document.createElement("div");
+        box.style.background = "white";
+        box.style.padding = "2rem";
+        box.style.borderRadius = "0.5rem";
+        box.style.textAlign = "center";
+        box.style.maxWidth = "400px";
+        box.style.fontFamily = "system-ui, sans-serif";
+
+        box.innerHTML = `
+          <h3 style="margin-bottom: 1rem;">You already have an unfinished session for <b>${examName}</b>.</h3>
+          <p style="color:#4b5563; margin-bottom:1.5rem;">
+            Do you want to resume your previous attempt or start a new test?
+          </p>
+        `;
+
+        const resumeBtn = document.createElement("button");
+        resumeBtn.textContent = "Resume";
+        resumeBtn.style.background = "#2563eb";
+        resumeBtn.style.color = "white";
+        resumeBtn.style.padding = "0.5rem 1rem";
+        resumeBtn.style.border = "none";
+        resumeBtn.style.borderRadius = "0.375rem";
+        resumeBtn.style.marginRight = "0.5rem";
+        resumeBtn.style.cursor = "pointer";
+
+        const newBtn = document.createElement("button");
+        newBtn.textContent = "Start New";
+        newBtn.style.background = "#dc2626";
+        newBtn.style.color = "white";
+        newBtn.style.padding = "0.5rem 1rem";
+        newBtn.style.border = "none";
+        newBtn.style.borderRadius = "0.375rem";
+        newBtn.style.cursor = "pointer";
+
+        box.appendChild(resumeBtn);
+        box.appendChild(newBtn);
+        modal.appendChild(box);
+        document.body.appendChild(modal);
+
+        const cleanup = () => modal.remove();
+
+        resumeBtn.onclick = () => {
+          cleanup();
+          navigate(`/test/${response.existingSession.id}`);
+        };
+
+        newBtn.onclick = async () => {
+          cleanup();
+          const newRes: any = await startExam(examId, true);
+          const newSession = newRes.session || newRes;
+          navigate(`/test/${newSession.id}`);
+        };
+
+        return;
+      }
+
+      const session = response.session || response;
       navigate(`/test/${session.id}`);
     } catch (error: any) {
-      alert('❌ Failed to start exam: ' + error.message);
+      alert("❌ Failed to start exam: " + error.message);
     }
   };
 
