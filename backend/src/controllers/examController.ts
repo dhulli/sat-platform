@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { ExamModel, TestSessionModel, ResponseModel, Question } from '../models/Exam';
+import { AnalyticsModel } from '../models/AnalyticsModel'; // ✅ add this import
 
 export class ExamController {
   // Get all available exams
@@ -480,6 +481,27 @@ static async completeModule(req: Request, res: Response) {
           status: "completed",
           completed_at: new Date(),
         });
+        // ✅ NEW BLOCK: generate analytics on final completion
+        try {
+          const gradingSummary = await ResponseModel.gradeSession(Number(sessionId));
+          await AnalyticsModel.upsertUserAnalytics({
+            user_id: fresh.user_id,
+            exam_id: fresh.exam_id,
+            test_session_id: fresh.id,
+            rw_score: fresh.rw_score ?? 0,
+            math_score: mathScaled,
+            total_score: totalScaled,
+            rw_accuracy: gradingSummary.rwAccuracy,
+            math_accuracy: gradingSummary.mathAccuracy,
+            avg_time_per_question: gradingSummary.avgTimePerQuestion,
+            strengths: gradingSummary.strengths,
+            weaknesses: gradingSummary.weaknesses,
+          });
+          console.log("✅ User analytics saved for session", fresh.id);
+        } catch (analyticsErr) {
+          console.error("⚠️ Analytics generation failed:", analyticsErr);
+        }
+        // ✅ END NEW BLOCK
       }
     }
 

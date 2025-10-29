@@ -43,6 +43,8 @@ interface GetSessionStatusResponse {
 const TestInterface: React.FC = () => {
   const { sessionId } = useParams<{ sessionId: string }>();
   const navigate = useNavigate();
+  // near top of TestInterface component
+  const [questionStartTime, setQuestionStartTime] = useState<number>(Date.now());
 
   // header info
   const [examName] = useState("SAT Practice Test");
@@ -53,6 +55,10 @@ const TestInterface: React.FC = () => {
   >("reading_writing_1");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
+  // track start time per question
+  useEffect(() => {
+    setQuestionStartTime(Date.now());
+  }, [currentQuestion]);
 
   // answers/flags
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
@@ -147,6 +153,7 @@ const TestInterface: React.FC = () => {
     }, 1000);
     return () => clearInterval(t);
   }, [timeRemaining]);
+ 
 
   // ---------------- Helpers ----------------
   const formatTime = (secs: number) => {
@@ -155,7 +162,7 @@ const TestInterface: React.FC = () => {
     return `${m}:${s.toString().padStart(2, "0")}`;
   };
 
-  const saveAnswer = async (questionId: number, userAnswer: string, isFlagged?: boolean) => {
+  const saveAnswer = async (questionId: number, userAnswer: string, isFlagged?: boolean,timeSpent?: number) => {
     if (!sessionId) return;
     const token = localStorage.getItem("sat_token");
     try {
@@ -167,7 +174,7 @@ const TestInterface: React.FC = () => {
           body: JSON.stringify({
             question_id: questionId,
             user_answer: userAnswer,
-            time_spent: 0,
+            time_spent: timeSpent ?? 0,
             sequence_number: 0,
             is_flagged: isFlagged ?? flaggedQuestions.has(questionId),
           })
@@ -213,8 +220,8 @@ const TestInterface: React.FC = () => {
   };
 
   const handleAutoSubmit = () => {
-    alert("Time is up. Your progress has been saved.");
-    handleExitTest();
+    //alert("Time is up. Your progress has been saved.");
+    completeCurrentModule();
   };
 
   // ---------------- Complete current module and route to next ----------------
@@ -587,7 +594,14 @@ const TestInterface: React.FC = () => {
         {/* Top row: question selector + flag */}
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
           <button
-            onClick={() => setPickerOpen(true)}
+            onClick={() => 
+              {
+                const now = Date.now();
+                const timeSpent = (now - questionStartTime) / 1000; // seconds
+                // save time for current question before moving
+                saveAnswer(currentQuestion, userAnswers[currentQuestion] || "", flaggedQuestions.has(currentQuestion), timeSpent);
+                setQuestionStartTime(now);
+                setPickerOpen(true)}}
             style={{
               border: "1px solid #d1d5db",
               borderRadius: 6,
@@ -675,6 +689,11 @@ const TestInterface: React.FC = () => {
             }}
             disabled={currentQuestion === questions[0]?.id}
             onClick={() => {
+              const now = Date.now();
+              const timeSpent = (now - questionStartTime) / 1000; // seconds
+              // save time for current question before moving
+              saveAnswer(currentQuestion, userAnswers[currentQuestion] || "", flaggedQuestions.has(currentQuestion), timeSpent);
+              setQuestionStartTime(now);
               const idx = questions.findIndex(q => q.id === currentQuestion);
               if (idx > 0) setCurrentQuestion(questions[idx - 1].id);
             }}
@@ -693,6 +712,12 @@ const TestInterface: React.FC = () => {
               fontWeight: "bold",
             }}
             onClick={() => {
+              const now = Date.now();
+              const timeSpent = (now - questionStartTime) / 1000; // seconds
+              // save time for current question before moving
+              saveAnswer(currentQuestion, userAnswers[currentQuestion] || "", flaggedQuestions.has(currentQuestion), timeSpent);
+              setQuestionStartTime(now);
+
               if (!isLastQuestion) {
                 const idx = questions.findIndex(q => q.id === currentQuestion);
                 setCurrentQuestion(questions[idx + 1].id);

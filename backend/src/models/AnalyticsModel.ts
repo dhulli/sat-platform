@@ -48,7 +48,7 @@ export class AnalyticsModel {
       );
     }
   }
-
+  
   static async getUserAnalytics(userId: number) {
     const [rows] = await pool.query(
       `SELECT * FROM user_analytics WHERE user_id = ? ORDER BY updated_at DESC`,

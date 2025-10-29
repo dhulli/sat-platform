@@ -6,6 +6,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/Dashboard';
 import TestInterface from './test/TestInterface';
+import AnalyticsDashboard from './analytics/AnalyticsDashboard';
 import './App.min.css';
 
 // Protected Route component
@@ -76,6 +77,11 @@ function App() {
               <Route path="/test/:sessionId" element={
                 <ProtectedRoute>
                   <TestInterface />
+                </ProtectedRoute>
+              } />
+              <Route path="/analytics" element={
+                <ProtectedRoute>
+                  <AnalyticsDashboard />
                 </ProtectedRoute>
               } />
               

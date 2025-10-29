@@ -224,6 +224,7 @@ export class TestSessionModel {
   static async deleteById(id: number) {
     await pool.execute(`DELETE FROM test_sessions WHERE id = ?`, [id]);
   }
+
 }
 
 export class ResponseModel {
@@ -250,16 +251,16 @@ export class ResponseModel {
     if ((existing as any[]).length > 0) {
       // Update existing response
       await pool.execute(
-        `UPDATE responses SET user_answer = ?, time_spent = ?, sequence_number = ?, is_flagged = ? 
+        `UPDATE responses SET user_answer = ?, time_spent = COALESCE(time_spent, 0) + ?, sequence_number = ?, is_flagged = ? 
          WHERE test_session_id = ? AND question_id = ?`,
-        [user_answer, time_spent, sequence_number, is_flagged, test_session_id, question_id]
+        [user_answer, time_spent ?? 0, sequence_number, is_flagged, test_session_id, question_id]
       );
     } else {
       // Create new response
       await pool.execute(
         `INSERT INTO responses (test_session_id, question_id, user_answer, time_spent, sequence_number, is_flagged) 
          VALUES (?, ?, ?, ?, ?, ?)`,
-        [test_session_id, question_id, user_answer, time_spent, sequence_number, is_flagged]
+        [test_session_id, question_id, user_answer, time_spent ?? 0, sequence_number, is_flagged]
       );
     }
   }
@@ -273,49 +274,100 @@ export class ResponseModel {
     return rows as Response[];
   }
   
-  static async gradeSession(sessionId: number): Promise<{
-    score: number;
-    correctCount: number;
-    totalQuestions: number;
-    results: any[];
-  }> {
-  // Get all responses for this session
-  const [responsesRows] = await pool.execute(
-    'SELECT * FROM responses WHERE test_session_id = ?',
-    [sessionId]
-  );
-  const responses = responsesRows as Response[];
+  static async gradeSession(sessionId: number) {
+    // Get all responses with joined question info
+    const [rows] = await pool.query(
+      `SELECT r.question_id, r.user_answer, r.is_flagged, r.time_spent, 
+              q.skill_category, q.module, q.correct_answer
+      FROM responses r
+      JOIN questions q ON r.question_id = q.id
+      WHERE r.test_session_id = ?`,
+      [sessionId]
+    );
 
-  if (responses.length === 0) {
-    return { score: 0, correctCount: 0, totalQuestions: 0, results: [] };
+    const responses = rows as any[];
+    if (!responses.length) {
+      return {
+        score: 0,
+        correctCount: 0,
+        totalQuestions: 0,
+        rwAccuracy: 0,
+        mathAccuracy: 0,
+        avgTimePerQuestion: 0,
+        strengths: [],
+        weaknesses: [],
+        results: []
+      };
+    }
+
+    let rwCorrect = 0,
+      rwTotal = 0,
+      mathCorrect = 0,
+      mathTotal = 0,
+      totalTime = 0;
+
+    // skill-wise buckets
+    const skillStats: Record<string, { correct: number; total: number }> = {};
+
+    for (const r of responses) {
+      const isCorrect = r.user_answer && r.user_answer === r.correct_answer;
+      const skill = r.skill_category || "Uncategorized";
+
+      totalTime += r.time_spent ?? 0;
+
+      if (!skillStats[skill]) skillStats[skill] = { correct: 0, total: 0 };
+      skillStats[skill].total++;
+      if (isCorrect) skillStats[skill].correct++;
+
+      if (r.module.startsWith("reading_writing")) {
+        rwTotal++;
+        if (isCorrect) rwCorrect++;
+      } else if (r.module.startsWith("math")) {
+        mathTotal++;
+        if (isCorrect) mathCorrect++;
+      }
   }
 
-  // Get all corresponding questions
-  const questionIds = responses.map(r => r.question_id);
-  const [questionRows] = await pool.execute(
-    `SELECT id, correct_answer FROM questions WHERE id IN (${questionIds.map(() => '?').join(',')})`,
-    questionIds
-  );
-  const questions = questionRows as { id: number; correct_answer: string }[];
+  const rwAccuracy = rwTotal ? rwCorrect / rwTotal : 0;
+  const mathAccuracy = mathTotal ? mathCorrect / mathTotal : 0;
 
-  let correctCount = 0;
-  const results = responses.map(r => {
-    const q = questions.find(q => q.id === r.question_id);
-    const isCorrect = q && r.user_answer?.trim() === q.correct_answer?.trim();
-    if (isCorrect) correctCount++;
-    return {
+  const avgTimePerQuestion = responses.length ? totalTime / responses.length : 0;
+
+  console.log(`Graded session ${sessionId}: RW ${rwCorrect}/${rwTotal}, Math ${mathCorrect}/${mathTotal}: time ${totalTime}s avg ${avgTimePerQuestion.toFixed(2)}s: responses`, responses);
+
+  // Sort skill categories by accuracy
+  const skillArray = Object.entries(skillStats).map(([skill, s]) => ({
+    skill,
+    accuracy: s.total ? s.correct / s.total : 0,
+  }));
+
+  skillArray.sort((a, b) => b.accuracy - a.accuracy);
+  const strengths = skillArray.slice(0, 3).map((s) => s.skill);
+  const weaknesses = skillArray.slice(-3).map((s) => s.skill);
+
+  const overallCorrect = rwCorrect + mathCorrect;
+  const overallTotal = rwTotal + mathTotal;
+  const score = overallTotal ? Math.round((overallCorrect / overallTotal) * 1600) : 0;
+
+  return {
+    score,
+    correctCount: overallCorrect,
+    totalQuestions: overallTotal,
+    rwAccuracy,
+    mathAccuracy,
+    avgTimePerQuestion,
+    strengths,
+    weaknesses,
+    results: responses.map((r) => ({
       question_id: r.question_id,
-      user_answer: r.user_answer,
-      correct_answer: q?.correct_answer,
-      is_correct: isCorrect
-    };
-  });
-
-  const totalQuestions = responses.length;
-  const score = Math.round((correctCount / totalQuestions) * 100);
-
-  return { score, correctCount, totalQuestions, results };
+      module: r.module,
+      skill_category: r.skill_category,
+      correct: r.user_answer === r.correct_answer,
+      time_spent: r.time_spent,
+    })),
+  };
 }
+
 
 // Grade by module prefix (e.g., 'reading_writing_1')
 static async gradeSessionByModule(

@@ -269,7 +269,8 @@ const Dashboard: React.FC = () => {
                 <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1rem' }}>
                   Track your progress and identify weak areas
                 </p>
-                <button style={{ 
+                <button onClick={() => navigate("/analytics")}
+                  style={{ 
                   marginTop: '1rem', 
                   backgroundColor: '#059669', 
                   color: 'white', 
