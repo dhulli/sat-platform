@@ -89,7 +89,8 @@ export class ExamModel {
     difficulty?: string
   ): Promise<Question[]> {
     let query = `
-      SELECT *
+      SELECT id, exam_id, module, difficulty, skill_category,
+            question_text, question_data, options, correct_answer, explanation, created_at
       FROM questions
       WHERE exam_id = ? AND module = ?
     `;
@@ -98,20 +99,44 @@ export class ExamModel {
     // Difficulty band mapping
     if (difficulty) {
       const label = String(difficulty).toLowerCase();
-      if (label === 'easy') query += ' AND difficulty <= 2';
-      else if (label === 'medium') query += ' AND difficulty = 3';
-      else if (label === 'hard') query += ' AND difficulty >= 4';
-      // if someone passes numeric, we let it slide and don’t add extra filter
+      if (label === "easy") query += " AND difficulty <= 2";
+      else if (label === "medium") query += " AND difficulty = 3";
+      else if (label === "hard") query += " AND difficulty >= 4";
     }
 
-    query += ' ORDER BY id';
+    query += " ORDER BY id";
 
     const [rows] = await pool.execute(query, params);
-    // Ensure options is a parsed array
-    const list = (rows as any[]).map(q => ({
-      ...q,
-      options: typeof q.options === 'string' ? JSON.parse(q.options) : q.options,
-    })) as Question[];
+
+    // Parse JSON fields safely
+    const list = (rows as any[]).map((q) => {
+      let parsedOptions: string[] = [];
+      let parsedData: any = {};
+
+      try {
+        parsedOptions =
+          typeof q.options === "string" ? JSON.parse(q.options) : q.options || [];
+      } catch {
+        parsedOptions = [];
+      }
+
+      try {
+        parsedData =
+          typeof q.question_data === "string"
+            ? JSON.parse(q.question_data)
+            : q.question_data || {};
+      } catch {
+        parsedData = {};
+      }
+
+      return {
+        ...q,
+        options: parsedOptions,
+        question_data: parsedData,
+        type: parsedData?.type || "mcq", // expose type directly for frontend
+        passage_text: parsedData?.passage || null, // convenience alias for passage_mcq
+      };
+    }) as Question[];
 
     return list;
   }
@@ -515,5 +540,75 @@ static computeSectionScore(
   return Math.round(200 + 600 * combined);
 }
 
+// Fetch full question+response set for review mode
+static async getReviewQuestionsBySession(sessionId: number) {
+  const [rows] = await pool.query(
+    `SELECT 
+      q.id AS question_id,
+      q.exam_id,
+      q.module,
+      q.skill_category,
+      q.question_text,
+      q.question_data,
+      q.options,
+      q.correct_answer,
+      q.explanation,
+      r.user_answer,
+      r.time_spent
+    FROM responses r
+    INNER JOIN questions q ON q.id = r.question_id
+    WHERE r.test_session_id = ?
+    ORDER BY 
+    FIELD(q.module, 'reading_writing_1', 'reading_writing_2', 'math_1', 'math_2'),
+    CASE WHEN r.sequence_number IS NULL OR r.sequence_number = 0 THEN q.id ELSE r.sequence_number END
+    `,
+    [sessionId]
+  );
+
+  const list = (rows as any[]).map((q) => {
+    let parsedOptions: string[] = [];
+    let parsedData: any = {};
+
+    try {
+      parsedOptions =
+        typeof q.options === "string" ? JSON.parse(q.options) : q.options || [];
+    } catch {
+      parsedOptions = [];
+    }
+
+    try {
+      parsedData =
+        typeof q.question_data === "string"
+          ? JSON.parse(q.question_data)
+          : q.question_data || {};
+    } catch {
+      parsedData = {};
+    }
+
+    const passageText = parsedData?.passage || null;
+    const type = parsedData?.type || "mcq";
+
+    const isCorrect =
+      (q.user_answer ?? "").trim().toUpperCase() ===
+      (q.correct_answer ?? "").trim().toUpperCase();
+
+    return {
+      question_id: q.question_id,
+      module: q.module,
+      skill_category: q.skill_category,
+      type,
+      passage_text: passageText,
+      question_text: q.question_text,
+      options: parsedOptions,
+      user_answer: q.user_answer,
+      correct_answer: q.correct_answer,
+      is_correct: isCorrect,
+      explanation: q.explanation,
+      time_spent: q.time_spent ?? 0,
+    };
+  });
+
+  return list;
+}
 
 }

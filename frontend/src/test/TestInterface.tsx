@@ -13,6 +13,8 @@ interface Question {
   question_text: string;
   options: string[];
   explanation?: string;
+  type?: "mcq" | "passage_mcq" | "numeric";
+  passage_text?: string | null;
 }
 
 interface ServerSession {
@@ -472,6 +474,111 @@ const TestInterface: React.FC = () => {
     );
   }
 
+  // --------------- Question Renderer ---------------  
+  const renderQuestion = (q: Question) => {
+    // 1️⃣ Passage-based question (two panels)
+    if (q.type === "passage_mcq" && q.passage_text) {
+      return (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-220px)]">
+          {/* Left: Passage Panel */}
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 overflow-y-auto shadow-inner text-left">
+            <h3 className="font-semibold text-gray-700 mb-3">Passage</h3>
+            <div className="whitespace-pre-line text-gray-800 leading-relaxed text-sm">
+              {q.passage_text}
+            </div>
+          </div>
+
+          {/* Right: Question and Options */}
+          <div className="border border-gray-100 rounded-lg p-6 overflow-y-auto text-left">
+            <div className="text-lg font-semibold mb-5 text-gray-800">
+              {q.question_text}
+            </div>
+
+            <div className="space-y-3">
+              {q.options.map((opt, idx) => {
+                const letter = String.fromCharCode(65 + idx);
+                const selected = userAnswers[q.id] === letter;
+                return (
+                  <div
+                    key={idx}
+                    onClick={() => handleAnswerSelect(q.id, letter)}
+                    className={`flex items-start border rounded-md p-3 cursor-pointer transition ${
+                      selected
+                        ? "border-blue-500 bg-blue-50"
+                        : "border-gray-300 hover:bg-gray-50"
+                    }`}
+                  >
+                    <div
+                      className={`w-6 h-6 flex items-center justify-center rounded-md mr-3 font-bold ${
+                        selected
+                          ? "bg-blue-500 text-white"
+                          : "border border-gray-400 text-gray-600"
+                      }`}
+                    >
+                      {letter}
+                    </div>
+                    <span className="text-gray-800">{opt}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // 2️⃣ Numeric input question (free-response)
+    if (q.type === "numeric") {
+      return (
+        <div className="space-y-4 text-left">
+          <div className="text-lg font-semibold text-gray-800">{q.question_text}</div>
+          <input
+            type="number"
+            placeholder="Enter your answer"
+            className="border border-gray-300 rounded-md p-2 w-48 text-lg focus:ring-2 focus:ring-blue-400 outline-none"
+            value={userAnswers[q.id] || ""}
+            onChange={(e) => handleAnswerSelect(q.id, e.target.value)}
+          />
+        </div>
+      );
+    }
+
+    // 3️⃣ Default MCQ (no passage)
+    return (
+      <div className="text-left">
+        <div className="text-lg font-semibold mb-4 text-gray-800">{q.question_text}</div>
+        <div className="space-y-3">
+          {q.options.map((opt, idx) => {
+            const letter = String.fromCharCode(65 + idx);
+            const selected = userAnswers[q.id] === letter;
+            return (
+              <div
+                key={idx}
+                onClick={() => handleAnswerSelect(q.id, letter)}
+                className={`flex items-start border rounded-md p-3 cursor-pointer transition ${
+                  selected
+                    ? "border-blue-500 bg-blue-50"
+                    : "border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                <div
+                  className={`w-6 h-6 flex items-center justify-center rounded-md mr-3 font-bold ${
+                    selected
+                      ? "bg-blue-500 text-white"
+                      : "border border-gray-400 text-gray-600"
+                  }`}
+                >
+                  {letter}
+                </div>
+                <span className="text-gray-800">{opt}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
   // ---------------- Main test interface ----------------
   return (
     <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
@@ -629,52 +736,7 @@ const TestInterface: React.FC = () => {
         </div>
 
         {/* Question block */}
-        {currentQuestionData && (
-          <>
-            <div style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
-              {currentQuestionData.question_text}
-            </div>
-
-            <div>
-              {currentQuestionData.options.map((option, index) => {
-                const optionLetter = String.fromCharCode(65 + index);
-                return (
-                  <div
-                    key={index}
-                    style={optionStyle(currentQuestionData.id, index)}
-                    onClick={() => handleAnswerSelect(currentQuestionData.id, optionLetter)}
-                  >
-                    <div style={{ display: "flex", alignItems: "flex-start" }}>
-                      <div
-                        style={{
-                          width: "24px",
-                          height: "24px",
-                          border: `2px solid ${
-                            userAnswers[currentQuestionData.id] === optionLetter ? "#2563eb" : "#9ca3af"
-                          }`,
-                          borderRadius: "4px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          marginRight: "1rem",
-                          flexShrink: 0,
-                          backgroundColor:
-                            userAnswers[currentQuestionData.id] === optionLetter ? "#2563eb" : "white",
-                          color: userAnswers[currentQuestionData.id] === optionLetter ? "white" : "#9ca3af",
-                          fontWeight: "bold",
-                          fontSize: "0.875rem",
-                        }}
-                      >
-                        {optionLetter}
-                      </div>
-                      <div style={{ lineHeight: "1.5", color: "#374151" }}>{option}</div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </>
-        )}
+        {currentQuestionData && renderQuestion(currentQuestionData)}
 
         {/* Bottom nav */}
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1rem" }}>

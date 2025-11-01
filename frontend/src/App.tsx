@@ -7,6 +7,9 @@ import Register from './components/auth/Register';
 import Dashboard from './components/Dashboard';
 import TestInterface from './test/TestInterface';
 import AnalyticsDashboard from './analytics/AnalyticsDashboard';
+import ReviewDashboard from "./components/ReviewDashboard";
+import ReviewDetail from "./components/ReviewDetail";
+
 import './App.min.css';
 
 // Protected Route component
@@ -90,6 +93,9 @@ function App() {
               
               {/* Catch all route */}
               <Route path="*" element={<Navigate to="/" />} />
+
+              <Route path="/review" element={<ReviewDashboard />} />
+              <Route path="/review/:sessionId" element={<ReviewDetail />} />
             </Routes>
           </div>
         </Router>
