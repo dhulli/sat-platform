@@ -1,34 +1,34 @@
-import React from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useExam } from '../context/ExamContext';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useExam } from "../context/ExamContext";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
   const { user, logout } = useAuth();
   const { exams, loading, loadExams, startExam } = useExam();
+  const [selectedExam, setSelectedExam] = useState<number | null>(null);
   const navigate = useNavigate();
 
-  // Load exams when component mounts
-  React.useEffect(() => {
-    const loadExamsOnce = async () => {
-      if (exams.length === 0 && !loading) {
-        await loadExams();
-      }
-    };
-    
-    loadExamsOnce();
+  useEffect(() => {
+    if (exams.length === 0 && !loading) loadExams();
   }, [exams.length, loading, loadExams]);
 
-  const handleLogout = () => {
-    logout();
-  };
+  // -------------------------------------------
+  // Custom modal logic for Start Test
+  // -------------------------------------------
+  const handleStartExam = async () => {
+    if (!selectedExam) {
+      alert("Please select a test to start.");
+      return;
+    }
 
-  const handleStartExam = async (examId: number, examName: string) => {
+    const selected = exams.find((e) => e.id === selectedExam);
+    if (!selected) return;
+
     try {
-      const response: any = await startExam(examId);
+      const response: any = await startExam(selectedExam);
 
       if (response.requiresConfirmation && response.existingSession) {
-        // create a simple custom dialog instead of window.confirm
         const modal = document.createElement("div");
         modal.style.position = "fixed";
         modal.style.top = "0";
@@ -44,17 +44,25 @@ const Dashboard: React.FC = () => {
         const box = document.createElement("div");
         box.style.background = "white";
         box.style.padding = "2rem";
-        box.style.borderRadius = "0.5rem";
+        box.style.borderRadius = "0.75rem";
         box.style.textAlign = "center";
         box.style.maxWidth = "400px";
+        box.style.boxShadow = "0 8px 25px rgba(0,0,0,0.2)";
         box.style.fontFamily = "system-ui, sans-serif";
 
         box.innerHTML = `
-          <h3 style="margin-bottom: 1rem;">You already have an unfinished session for <b>${examName}</b>.</h3>
-          <p style="color:#4b5563; margin-bottom:1.5rem;">
-            Do you want to resume your previous attempt or start a new test?
+          <h3 style="font-size:1.25rem; font-weight:600; color:#111827; margin-bottom:1rem;">
+            Continue your ${selected.name} test?
+          </h3>
+          <p style="color:#4b5563; font-size:0.9rem; margin-bottom:1.5rem;">
+            You already have a session in progress. Resume where you left off, or start fresh.
           </p>
         `;
+
+        const btnRow = document.createElement("div");
+        btnRow.style.display = "flex";
+        btnRow.style.justifyContent = "center";
+        btnRow.style.gap = "0.75rem";
 
         const resumeBtn = document.createElement("button");
         resumeBtn.textContent = "Resume";
@@ -63,8 +71,8 @@ const Dashboard: React.FC = () => {
         resumeBtn.style.padding = "0.5rem 1rem";
         resumeBtn.style.border = "none";
         resumeBtn.style.borderRadius = "0.375rem";
-        resumeBtn.style.marginRight = "0.5rem";
         resumeBtn.style.cursor = "pointer";
+        resumeBtn.style.fontWeight = "500";
 
         const newBtn = document.createElement("button");
         newBtn.textContent = "Start New";
@@ -74,9 +82,11 @@ const Dashboard: React.FC = () => {
         newBtn.style.border = "none";
         newBtn.style.borderRadius = "0.375rem";
         newBtn.style.cursor = "pointer";
+        newBtn.style.fontWeight = "500";
 
-        box.appendChild(resumeBtn);
-        box.appendChild(newBtn);
+        btnRow.appendChild(resumeBtn);
+        btnRow.appendChild(newBtn);
+        box.appendChild(btnRow);
         modal.appendChild(box);
         document.body.appendChild(modal);
 
@@ -89,7 +99,7 @@ const Dashboard: React.FC = () => {
 
         newBtn.onclick = async () => {
           cleanup();
-          const newRes: any = await startExam(examId, true);
+          const newRes: any = await startExam(selectedExam, true);
           const newSession = newRes.session || newRes;
           navigate(`/test/${newSession.id}`);
         };
@@ -99,242 +109,157 @@ const Dashboard: React.FC = () => {
 
       const session = response.session || response;
       navigate(`/test/${session.id}`);
-    } catch (error: any) {
-      alert("❌ Failed to start exam: " + error.message);
+    } catch (err: any) {
+      alert("❌ Failed to start exam: " + err.message);
     }
   };
 
-  // Inline styles
-  const containerStyle: React.CSSProperties = {
-    minHeight: '100vh',
-    backgroundColor: '#f3f4f6'
-  };
-
-  const headerStyle: React.CSSProperties = {
-    backgroundColor: 'white',
-    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
-  };
-
-  const headerInnerStyle: React.CSSProperties = {
-    maxWidth: '80rem',
-    margin: '0 auto',
-    padding: '0 1rem'
-  };
-
-  const badgeStyle: React.CSSProperties = {
-    padding: '0.25rem 0.75rem',
-    borderRadius: '9999px',
-    fontSize: '0.875rem',
-    fontWeight: 500,
-    backgroundColor: user?.subscriptionType === 'premium' ? '#fef3c7' : '#f3f4f6',
-    color: user?.subscriptionType === 'premium' ? '#92400e' : '#374151'
-  };
-
-  const buttonStyle: React.CSSProperties = {
-    backgroundColor: '#6b7280',
-    color: 'white',
-    padding: '0.5rem 1rem',
-    borderRadius: '0.375rem',
-    fontSize: '0.875rem',
-    border: 'none',
-    cursor: 'pointer'
-  };
-
-  const cardStyle: React.CSSProperties = {
-    backgroundColor: 'white',
-    padding: '1.5rem',
-    borderRadius: '0.5rem',
-    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-    border: '1px solid #e5e7eb'
-  };
-
-  const examCardStyle: React.CSSProperties = {
-    border: '1px solid #e5e7eb',
-    borderRadius: '0.5rem',
-    padding: '1rem',
-    backgroundColor: '#f9fafb',
-    marginBottom: '0.75rem'
-  };
-
-  const startButtonStyle: React.CSSProperties = {
-    backgroundColor: '#2563eb',
-    color: 'white',
-    padding: '0.5rem 1rem',
-    borderRadius: '0.375rem',
-    fontSize: '0.875rem',
-    border: 'none',
-    cursor: 'pointer',
-    width: '100%',
-    marginTop: '0.5rem'
-  };
-
   return (
-    <div style={containerStyle}>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <header style={headerStyle}>
-        <div style={headerInnerStyle}>
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            padding: '1.5rem 0' 
-          }}>
-            <div>
-              <h1 style={{ fontSize: '1.875rem', fontWeight: 'bold', color: '#111827', margin: 0 }}>
-                SAT Platform
-              </h1>
-              <p style={{ color: '#6b7280', margin: '0.25rem 0 0 0' }}>
-                Welcome back, {user?.firstName || user?.email}!
-              </p>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <span style={badgeStyle}>
-                {user?.subscriptionType === 'premium' ? '⭐ Premium' : 'Free Plan'}
-              </span>
-              <button onClick={handleLogout} style={buttonStyle}>
-                Logout
-              </button>
-            </div>
+      <header className="bg-white shadow-sm flex-shrink-0">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div>
+            <h1 className="text-xl font-bold text-gray-900">SAT Platform</h1>
+            <p className="text-sm text-gray-600">
+              Welcome back, {user?.firstName || user?.email}!
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span
+              className={`px-3 py-1 rounded-full text-xs font-medium ${
+                user?.subscriptionType === "premium"
+                  ? "bg-yellow-100 text-yellow-800"
+                  : "bg-gray-100 text-gray-700"
+              }`}
+            >
+              {user?.subscriptionType === "premium" ? "⭐ Premium" : "Free Plan"}
+            </span>
+
+            {/* About Button */}
+            <button
+              onClick={() => navigate("/about")}
+              className="bg-blue-100 text-blue-700 px-3 py-1.5 text-sm rounded-md hover:bg-blue-200 transition"
+            >
+              About the App
+            </button>
+
+            <button
+              onClick={logout}
+              className="bg-gray-700 text-white px-3 py-1.5 text-sm rounded-md hover:bg-gray-800"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main style={{ maxWidth: '80rem', margin: '0 auto', padding: '1.5rem 1rem' }}>
-        <div style={{ 
-          border: '4px dashed #e5e7eb', 
-          borderRadius: '0.5rem', 
-          padding: '2rem',
-          backgroundColor: 'white'
-        }}>
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#111827', marginBottom: '1rem' }}>
-              Welcome to Your SAT Prep Dashboard
-            </h2>
-            <p style={{ color: '#6b7280', marginBottom: '2rem' }}>
-              Ready to start your SAT preparation journey? Access practice tests, track your progress, and improve your scores.
-            </p>
-            
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-              gap: '1.5rem', 
-              maxWidth: '64rem', 
-              margin: '0 auto' 
-            }}>
-              {/* Practice Tests Card */}
-              <div style={cardStyle}>
-                <div style={{ color: '#2563eb', fontSize: '1.125rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                  Practice Tests {exams.length > 0 ? `(${exams.length} available)` : ''}
+      {/* Main */}
+      <main className="flex-grow max-w-7xl mx-auto px-6 py-6 grid grid-cols-12 gap-6 items-start overflow-hidden">
+        {/* Left Column: Stats + Test Selector */}
+        <div className="col-span-12 lg:col-span-7 space-y-5">
+          {/* Stats Row */}
+          <div className="grid grid-cols-4 gap-3">
+            {[
+              { label: "Tests Taken", value: "0" },
+              { label: "Best Score", value: "-" },
+              { label: "Hours Practiced", value: "0" },
+              { label: "Tests Available", value: exams.length.toString() },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-white border border-gray-200 rounded-md text-center py-4 shadow-sm"
+              >
+                <div className="text-lg font-semibold text-gray-900">
+                  {stat.value}
                 </div>
-                <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1rem' }}>
-                  Take full-length adaptive SAT practice tests
-                </p>
-                
-                {loading ? (
-                  <div style={{ textAlign: 'center', color: '#6b7280', padding: '1rem' }}>
-                    Loading exams...
-                  </div>
-                ) : exams.length === 0 ? (
-                  <div style={{ textAlign: 'center', color: '#6b7280', padding: '1rem' }}>
-                    No exams available
-                  </div>
-                ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    {exams.map(exam => (
-                      <div key={exam.id} style={examCardStyle}>
-                        <div style={{ fontWeight: 600, color: '#111827', marginBottom: '0.25rem' }}>
-                          {exam.name}
-                        </div>
-                        <div style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '0.5rem' }}>
-                          {exam.total_questions} questions • {exam.description}
-                        </div>
-                        <button 
-                          style={startButtonStyle}
-                          onClick={() => handleStartExam(exam.id, exam.name)}
-                        >
-                          Start Test
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="text-xs text-gray-500">{stat.label}</div>
               </div>
-              
-              {/* Performance Analytics Card */}
-              <div style={cardStyle}>
-                <div style={{ color: '#059669', fontSize: '1.125rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                  Performance Analytics
-                </div>
-                <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1rem' }}>
-                  Track your progress and identify weak areas
-                </p>
-                <button onClick={() => navigate("/analytics")}
-                  style={{ 
-                  marginTop: '1rem', 
-                  backgroundColor: '#059669', 
-                  color: 'white', 
-                  padding: '0.5rem 1rem', 
-                  borderRadius: '0.375rem', 
-                  fontSize: '0.875rem', 
-                  width: '100%',
-                  border: 'none',
-                  cursor: 'pointer'
-                }}>
-                  View Analytics
-                </button>
-              </div>
-              
-              {/* Study Plan Card */}
-              <div style={cardStyle}>
-                <div style={{ color: '#7c3aed', fontSize: '1.125rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                  Study Plan
-                </div>
-                <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1rem' }}>
-                  Personalized recommendations based on your performance
-                </p>
-                <button style={{ 
-                  marginTop: '1rem', 
-                  backgroundColor: '#7c3aed', 
-                  color: 'white', 
-                  padding: '0.5rem 1rem', 
-                  borderRadius: '0.375rem', 
-                  fontSize: '0.875rem', 
-                  width: '100%',
-                  border: 'none',
-                  cursor: 'pointer'
-                }}>
-                  View Plan
-                </button>
-              </div>
-            </div>
+            ))}
+          </div>
 
-            {/* Quick Stats */}
-            <div style={{ 
-              marginTop: '3rem', 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', 
-              gap: '1rem', 
-              maxWidth: '32rem', 
-              margin: '3rem auto 0 auto' 
-            }}>
-              <div style={cardStyle}>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#111827' }}>0</div>
-                <div style={{ color: '#6b7280', fontSize: '0.875rem' }}>Tests Taken</div>
+          {/* Test Selector */}
+          <div className="bg-white border border-gray-200 rounded-md p-5 shadow-sm">
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">
+              Start a Practice Test
+            </h2>
+            <p className="text-sm text-gray-500 mb-3">
+              Choose a test to begin or resume your progress.
+            </p>
+
+            {loading ? (
+              <p className="text-gray-500 text-center py-3">Loading exams...</p>
+            ) : exams.length === 0 ? (
+              <p className="text-gray-500 text-center py-3">
+                No available tests found.
+              </p>
+            ) : (
+              <div className="flex flex-col items-center space-y-4">
+                <select
+                  value={selectedExam ?? ""}
+                  onChange={(e) => setSelectedExam(Number(e.target.value))}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-sm"
+                >
+                  <option value="">Select a Test</option>
+                  {exams.map((exam) => (
+                    <option key={exam.id} value={exam.id}>
+                      {exam.name} ({exam.total_questions} questions)
+                    </option>
+                  ))}
+                </select>
+
+                <button
+                  onClick={handleStartExam}
+                  disabled={!selectedExam}
+                  className={`w-full py-2 rounded-md text-white font-medium text-sm transition ${
+                    selectedExam
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "bg-gray-400 cursor-not-allowed"
+                  }`}
+                >
+                  Start Test
+                </button>
+
+                <button
+                  onClick={() => navigate("/review")}
+                  className="w-full py-2 border border-green-600 text-green-700 rounded-md hover:bg-green-600 hover:text-white text-sm font-medium transition"
+                >
+                  Go to Review Dashboard
+                </button>
               </div>
-              <div style={cardStyle}>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#111827' }}>-</div>
-                <div style={{ color: '#6b7280', fontSize: '0.875rem' }}>Best Score</div>
-              </div>
-              <div style={cardStyle}>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#111827' }}>0</div>
-                <div style={{ color: '#6b7280', fontSize: '0.875rem' }}>Hours Practiced</div>
-              </div>
-              <div style={cardStyle}>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#111827' }}>{exams.length}</div>
-                <div style={{ color: '#6b7280', fontSize: '0.875rem' }}>Tests Available</div>
-              </div>
-            </div>
+            )}
+          </div>
+        </div>
+
+        {/* Right Column: Feature Cards */}
+        <div className="col-span-12 lg:col-span-5 space-y-5">
+          <div className="bg-white p-5 rounded-md border border-gray-200 shadow-sm">
+            <h3 className="text-base font-semibold text-green-700 mb-1">
+              Performance Analytics
+            </h3>
+            <p className="text-sm text-gray-600 mb-3">
+              View progress, accuracy trends, and section-wise performance.
+            </p>
+            <button
+              onClick={() => navigate("/analytics")}
+              className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md text-sm transition"
+            >
+              View Analytics
+            </button>
+          </div>
+
+          <div className="bg-white p-5 rounded-md border border-gray-200 shadow-sm">
+            <h3 className="text-base font-semibold text-purple-700 mb-1">
+              Study Plan
+            </h3>
+            <p className="text-sm text-gray-600 mb-3">
+              Personalized recommendations based on your strengths and
+              weaknesses.
+            </p>
+            <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-md text-sm transition">
+              View Study Plan
+            </button>
           </div>
         </div>
       </main>

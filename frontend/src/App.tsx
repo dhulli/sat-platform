@@ -9,6 +9,7 @@ import TestInterface from './test/TestInterface';
 import AnalyticsDashboard from './analytics/AnalyticsDashboard';
 import ReviewDashboard from "./components/ReviewDashboard";
 import ReviewDetail from "./components/ReviewDetail";
+import AboutPage from "./components/AboutPage";
 
 import './App.min.css';
 
@@ -77,6 +78,11 @@ function App() {
                   <Dashboard />
                 </ProtectedRoute>
               } />
+              <Route path="/about" element={
+                <ProtectedRoute>
+                  <AboutPage />
+                </ProtectedRoute>
+              } />
               <Route path="/test/:sessionId" element={
                 <ProtectedRoute>
                   <TestInterface />
@@ -87,15 +93,23 @@ function App() {
                   <AnalyticsDashboard />
                 </ProtectedRoute>
               } />
+              <Route path="/review" element={
+                <ProtectedRoute>
+                  <ReviewDashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="/review/:sessionId" element={
+                <ProtectedRoute>
+                  <ReviewDetail />
+                </ProtectedRoute>
+              } />
               
               {/* Default route */}
               <Route path="/" element={<Navigate to="/dashboard" />} />
               
               {/* Catch all route */}
               <Route path="*" element={<Navigate to="/" />} />
-
-              <Route path="/review" element={<ReviewDashboard />} />
-              <Route path="/review/:sessionId" element={<ReviewDetail />} />
+              
             </Routes>
           </div>
         </Router>
