@@ -1,0 +1,736 @@
+{
+  "exam_id": 1,
+  "section_label": "Math2",
+  "module": "math_2",
+  "distribution_by_micro": {
+    "CAT026": 1,
+    "CAT019": 1,
+    "CAT020": 1,
+    "CAT022": 1,
+    "CAT018": 1,
+    "CAT034": 1,
+    "CAT025": 1,
+    "CAT033": 1,
+    "CAT038": 1,
+    "CAT036": 1,
+    "CAT035": 1,
+    "CAT029": 1,
+    "CAT024": 1,
+    "CAT027": 1,
+    "CAT032": 1,
+    "CAT023": 1,
+    "CAT039": 1,
+    "CAT030": 1,
+    "CAT028": 1,
+    "CAT037": 1,
+    "CAT031": 1,
+    "CAT021": 1
+  },
+  "items": [
+    {
+      "qid": 394739,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Expressions & Equations | Equivalent expressions \u2014 identities (compare coefficients)",
+      "question_text": "The graph shows the line y = mx + b. What is y when x = 1?",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "The graph shows the line y = mx + b. What is y when x = 1?",
+        "image_html": "<svg width=\"220\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\">\n  <line x1=\"20\" y1=\"20\" x2=\"20\" y2=\"120\" stroke=\"black\"/>\n  <line x1=\"20\" y1=\"120\" x2=\"210\" y2=\"120\" stroke=\"black\"/>\n  <line x1=\"20\" y1=\"-20\" x2=\"200\" y2=\"80\" stroke=\"black\"/>\n</svg>",
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 9,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT034",
+          "code": "M-ADV-EQUIV-IDENT",
+          "category": "Expressions & Equations",
+          "domain": "Advanced Math",
+          "micro_label": "Equivalent expressions \u2014 identities (compare coefficients)",
+          "has_image": true,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "3",
+      "explanation": "Substitute: y = -1(1) + 4 = 3."
+    },
+    {
+      "qid": 699075,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Systems (2\u00d72) \u2014 word \u2192 system",
+      "question_text": "Solve for x: 4x + 5 = 37.",
+      "question_data": {
+        "type": "math_mcq",
+        "prompt": "Solve for x: 4x + 5 = 37.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT029",
+          "code": "M-ALG-SYS-WORD",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Systems (2\u00d72) \u2014 word \u2192 system",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [
+        "8",
+        "6",
+        "9",
+        "7"
+      ],
+      "correct_answer": "A",
+      "explanation": "Isolate x: 4x = 37 - (5) = 32; x = (32)/4 = 8."
+    },
+    {
+      "qid": 196954,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Nonlinear Equations | Nonlinear equations \u2014 rational equations (extraneous)",
+      "question_text": "Solve for x: 4x + 9 = 33.",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "Solve for x: 4x + 9 = 33.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 7,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT039",
+          "code": "M-ADV-NLEQ-RATIONAL-EQ",
+          "category": "Nonlinear Equations",
+          "domain": "Advanced Math",
+          "micro_label": "Nonlinear equations \u2014 rational equations (extraneous)",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "6",
+      "explanation": "Isolate x: 4x = 33 - (9) = 24; x = (24)/4 = 6."
+    },
+    {
+      "qid": 863520,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Systems (2\u00d72) \u2014 elimination",
+      "question_text": "Solve for x: 7x + 3 = 3.",
+      "question_data": {
+        "type": "math_mcq",
+        "prompt": "Solve for x: 7x + 3 = 3.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT028",
+          "code": "M-ALG-SYS-ELIM",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Systems (2\u00d72) \u2014 elimination",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [
+        "1",
+        "-2",
+        "0",
+        "-1"
+      ],
+      "correct_answer": "C",
+      "explanation": "Isolate x: 7x = 3 - (3) = 0; x = (0)/7 = 0."
+    },
+    {
+      "qid": 1026528,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Nonlinear Equations | Nonlinear equations \u2014 quadratic solve (any method)",
+      "question_text": "Solve for x: 9x - 7 = -43.",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "Solve for x: 9x - 7 = -43.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT037",
+          "code": "M-ADV-NLEQ-QUAD",
+          "category": "Nonlinear Equations",
+          "domain": "Advanced Math",
+          "micro_label": "Nonlinear equations \u2014 quadratic solve (any method)",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "-4",
+      "explanation": "Isolate x: 9x = -43 - (-7) = -36; x = (-36)/9 = -4."
+    },
+    {
+      "qid": 554419,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Linear Relationships | Linear inequalities \u2014 system region & test point",
+      "question_text": "Solve for x: 7x + 5 = -2.",
+      "question_data": {
+        "type": "math_mcq",
+        "prompt": "Solve for x: 7x + 5 = -2.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 10,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT031",
+          "code": "M-ALG-INEQ-REGION",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear inequalities \u2014 system region & test point",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [
+        "0",
+        "-1",
+        "-3",
+        "-2"
+      ],
+      "correct_answer": "B",
+      "explanation": "Isolate x: 7x = -2 - (5) = -7; x = (-7)/7 = -1."
+    },
+    {
+      "qid": 614690,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Linear functions \u2014 average rate of change",
+      "question_text": "The graph shows the line y = mx + b. What is y when x = -2?",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "The graph shows the line y = mx + b. What is y when x = -2?",
+        "image_html": "<svg width=\"220\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\">\n  <line x1=\"20\" y1=\"20\" x2=\"20\" y2=\"120\" stroke=\"black\"/>\n  <line x1=\"20\" y1=\"120\" x2=\"210\" y2=\"120\" stroke=\"black\"/>\n  <line x1=\"20\" y1=\"130\" x2=\"200\" y2=\"-70\" stroke=\"black\"/>\n</svg>",
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 7,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT026",
+          "code": "M-ALG-LINFUNC-AVGRATE",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear functions \u2014 average rate of change",
+          "has_image": true,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "0",
+      "explanation": "Substitute: y = 2(-2) + 4 = 0."
+    },
+    {
+      "qid": 573239,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Nonlinear Equations | Nonlinear equations \u2014 factor theorem / higher degree",
+      "question_text": "Solve for x: 6x - 4 = 38.",
+      "question_data": {
+        "type": "math_mcq",
+        "prompt": "Solve for x: 6x - 4 = 38.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 10,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT038",
+          "code": "M-ADV-NLEQ-FACTORTHM",
+          "category": "Nonlinear Equations",
+          "domain": "Advanced Math",
+          "micro_label": "Nonlinear equations \u2014 factor theorem / higher degree",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [
+        "6",
+        "5",
+        "8",
+        "7"
+      ],
+      "correct_answer": "D",
+      "explanation": "Isolate x: 6x = 38 - (-4) = 42; x = (42)/6 = 7."
+    },
+    {
+      "qid": 627102,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Expressions & Equations | Equivalent expressions \u2014 expand/factor",
+      "question_text": "A quantity Q follows Q(t) = 2\u00b7(3)^t. What is Q(3)?",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "A quantity Q follows Q(t) = 2\u00b7(3)^t. What is Q(3)?",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 9,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT033",
+          "code": "M-ADV-EQUIV-EXPANDFAC",
+          "category": "Expressions & Equations",
+          "domain": "Advanced Math",
+          "micro_label": "Equivalent expressions \u2014 expand/factor",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "54",
+      "explanation": "Q(3) = 2\u00d73^3 = 2\u00d727 = 54."
+    },
+    {
+      "qid": 698177,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Linear inequalities \u2014 optimize over region (corner)",
+      "question_text": "Solve for x: 10x - 3 = 27.",
+      "question_data": {
+        "type": "math_mcq",
+        "prompt": "Solve for x: 10x - 3 = 27.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT032",
+          "code": "M-ALG-INEQ-OPT",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear inequalities \u2014 optimize over region (corner)",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [
+        "2",
+        "4",
+        "1",
+        "3"
+      ],
+      "correct_answer": "D",
+      "explanation": "Isolate x: 10x = 27 - (-3) = 30; x = (30)/10 = 3."
+    },
+    {
+      "qid": 168685,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Linear Relationships | Linear functions \u2014 transformations",
+      "question_text": "Solve for x: 12x + 2 = 110.",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "Solve for x: 12x + 2 = 110.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 10,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT025",
+          "code": "M-ALG-LINFUNC-TRANS",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear functions \u2014 transformations",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "9",
+      "explanation": "Isolate x: 12x = 110 - (2) = 108; x = (108)/12 = 9."
+    },
+    {
+      "qid": 108989,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Linear eq. (1 var) \u2014 variables both sides",
+      "question_text": "Solve for x: 10x + 1 = -9.",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "Solve for x: 10x + 1 = -9.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT018",
+          "code": "M-ALG-LIN1V-VB",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear eq. (1 var) \u2014 variables both sides",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "-1",
+      "explanation": "Isolate x: 10x = -9 - (1) = -10; x = (-10)/10 = -1."
+    },
+    {
+      "qid": 407017,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Linear eq. (2 var) \u2014 slope/intercepts from Ax+By=C",
+      "question_text": "Solve for x: 11x + 0 = 44.",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "Solve for x: 11x + 0 = 44.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT021",
+          "code": "M-ALG-LIN2V-SLPINT",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear eq. (2 var) \u2014 slope/intercepts from Ax+By=C",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "4",
+      "explanation": "Isolate x: 11x = 44 - (0) = 44; x = (44)/11 = 4."
+    },
+    {
+      "qid": 546334,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Systems (2\u00d72) \u2014 substitution",
+      "question_text": "Solve for x: 3x + 5 = 2.",
+      "question_data": {
+        "type": "math_mcq",
+        "prompt": "Solve for x: 3x + 5 = 2.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 7,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT027",
+          "code": "M-ALG-SYS-SUB",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Systems (2\u00d72) \u2014 substitution",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [
+        "-2",
+        "-3",
+        "0",
+        "-1"
+      ],
+      "correct_answer": "D",
+      "explanation": "Isolate x: 3x = 2 - (5) = -3; x = (-3)/3 = -1."
+    },
+    {
+      "qid": 564191,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Linear Relationships | Linear eq. (1 var) \u2014 |ax+b|=c",
+      "question_text": "The graph shows the line y = mx + b. What is y when x = -2?",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "The graph shows the line y = mx + b. What is y when x = -2?",
+        "image_html": "<svg width=\"220\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\">\n  <line x1=\"20\" y1=\"20\" x2=\"20\" y2=\"120\" stroke=\"black\"/>\n  <line x1=\"20\" y1=\"120\" x2=\"210\" y2=\"120\" stroke=\"black\"/>\n  <line x1=\"20\" y1=\"100\" x2=\"200\" y2=\"0\" stroke=\"black\"/>\n</svg>",
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 10,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT020",
+          "code": "M-ALG-LIN1V-ABS",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear eq. (1 var) \u2014 |ax+b|=c",
+          "has_image": true,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "0",
+      "explanation": "Substitute: y = 1(-2) + 2 = 0."
+    },
+    {
+      "qid": 83095,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Linear eq. (1 var) \u2014 fractional denominators",
+      "question_text": "The graph shows the line y = mx + b. What is y when x = 3?",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "The graph shows the line y = mx + b. What is y when x = 3?",
+        "image_html": "<svg width=\"220\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\">\n  <line x1=\"20\" y1=\"20\" x2=\"20\" y2=\"120\" stroke=\"black\"/>\n  <line x1=\"20\" y1=\"120\" x2=\"210\" y2=\"120\" stroke=\"black\"/>\n  <line x1=\"20\" y1=\"150\" x2=\"200\" y2=\"-50\" stroke=\"black\"/>\n</svg>",
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 7,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT019",
+          "code": "M-ALG-LIN1V-FRACDEN",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear eq. (1 var) \u2014 fractional denominators",
+          "has_image": true,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "8",
+      "explanation": "Substitute: y = 2(3) + 2 = 8."
+    },
+    {
+      "qid": 963695,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Linear Relationships | Linear functions \u2014 evaluate / solve f(x)=k",
+      "question_text": "Solve for x: 8x + 8 = 24.",
+      "question_data": {
+        "type": "math_mcq",
+        "prompt": "Solve for x: 8x + 8 = 24.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 9,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT024",
+          "code": "M-ALG-LINFUNC-EVAL",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear functions \u2014 evaluate / solve f(x)=k",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [
+        "3",
+        "1",
+        "0",
+        "2"
+      ],
+      "correct_answer": "D",
+      "explanation": "Isolate x: 8x = 24 - (8) = 16; x = (16)/8 = 2."
+    },
+    {
+      "qid": 918763,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Linear eq. (2 var) \u2014 write line (2 pts / pt+slope)",
+      "question_text": "Solve for x: 11x + 4 = 15.",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "Solve for x: 11x + 4 = 15.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT022",
+          "code": "M-ALG-LIN2V-WRITELINE",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear eq. (2 var) \u2014 write line (2 pts / pt+slope)",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "1",
+      "explanation": "Isolate x: 11x = 15 - (4) = 11; x = (11)/11 = 1."
+    },
+    {
+      "qid": 531561,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Linear eq. (2 var) \u2014 parallel/perpendicular through a point",
+      "question_text": "Solve for x: 8x + 1 = 65.",
+      "question_data": {
+        "type": "math_mcq",
+        "prompt": "Solve for x: 8x + 1 = 65.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT023",
+          "code": "M-ALG-LIN2V-PP-PT",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear eq. (2 var) \u2014 parallel/perpendicular through a point",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [
+        "6",
+        "9",
+        "7",
+        "8"
+      ],
+      "correct_answer": "D",
+      "explanation": "Isolate x: 8x = 65 - (1) = 64; x = (64)/8 = 8."
+    },
+    {
+      "qid": 619912,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Expressions & Equations | Equivalent expressions \u2014 exponent/radical rules",
+      "question_text": "The data set has values [12, 12, 3, 4, 8, 4]. What is the mean of the set?",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "The data set has values [12, 12, 3, 4, 8, 4]. What is the mean of the set?",
+        "image_html": "<svg width=\"220\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\">\n  <line x1=\"10\" y1=\"120\" x2=\"210\" y2=\"120\" stroke=\"black\"/>\n  <rect x=\"10\" y=\"82\" width=\"20\" height=\"38\" stroke=\"black\" fill=\"none\"/><text x=\"10\" y=\"135\" font-size=\"10\">12</text><rect x=\"40\" y=\"82\" width=\"20\" height=\"38\" stroke=\"black\" fill=\"none\"/><text x=\"40\" y=\"135\" font-size=\"10\">12</text><rect x=\"70\" y=\"109\" width=\"20\" height=\"11\" stroke=\"black\" fill=\"none\"/><text x=\"70\" y=\"135\" font-size=\"10\">3</text><rect x=\"100\" y=\"106\" width=\"20\" height=\"14\" stroke=\"black\" fill=\"none\"/><text x=\"100\" y=\"135\" font-size=\"10\">4</text><rect x=\"130\" y=\"94\" width=\"20\" height=\"26\" stroke=\"black\" fill=\"none\"/><text x=\"130\" y=\"135\" font-size=\"10\">8</text>\n</svg>",
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 7,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT036",
+          "code": "M-ADV-EQUIV-EXP_RAD",
+          "category": "Expressions & Equations",
+          "domain": "Advanced Math",
+          "micro_label": "Equivalent expressions \u2014 exponent/radical rules",
+          "has_image": true,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "7.17",
+      "explanation": "Mean = 43/6 = 7.166666666666667."
+    },
+    {
+      "qid": 566257,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Expressions & Equations | Equivalent expressions \u2014 rational simplify (domain)",
+      "question_text": "Solve for x: 12x - 10 = 86.",
+      "question_data": {
+        "type": "math_gridin",
+        "prompt": "Solve for x: 12x - 10 = 86.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 9,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT035",
+          "code": "M-ADV-EQUIV-RATIONAL",
+          "category": "Expressions & Equations",
+          "domain": "Advanced Math",
+          "micro_label": "Equivalent expressions \u2014 rational simplify (domain)",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [],
+      "correct_answer": "8",
+      "explanation": "Isolate x: 12x = 86 - (-10) = 96; x = (96)/12 = 8."
+    },
+    {
+      "qid": 537936,
+      "exam_id": 1,
+      "module": "math_2",
+      "section_label": "Math2",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Linear Relationships | Linear inequalities \u2014 1 variable",
+      "question_text": "Solve for x: 8x - 8 = -8.",
+      "question_data": {
+        "type": "math_mcq",
+        "prompt": "Solve for x: 8x - 8 = -8.",
+        "image_html": null,
+        "meta": {
+          "section_label": "Math2",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Derived from steps, numeric size, representation, and abstraction.",
+          "category_id": "CAT030",
+          "code": "M-ALG-INEQ-1VAR",
+          "category": "Linear Relationships",
+          "domain": "Algebra",
+          "micro_label": "Linear inequalities \u2014 1 variable",
+          "has_image": false,
+          "table_html": false
+        }
+      },
+      "options": [
+        "-1",
+        "0",
+        "1",
+        "-2"
+      ],
+      "correct_answer": "B",
+      "explanation": "Isolate x: 8x = -8 - (-8) = 0; x = (0)/8 = 0."
+    }
+  ]
+}

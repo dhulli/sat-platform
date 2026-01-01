@@ -3,6 +3,46 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // using your existing auth + exam context only for tokenless bits
 // you don’t need useExam here; we hit the backend directly
+import DOMPurify from "dompurify";
+
+const renderPassage = (content?: string | null) => {
+  if (!content) return null;
+
+  const clean = DOMPurify.sanitize(content);
+
+  const isHTML = /<\/?[a-z][\s\S]*>/i.test(content);
+
+  return (
+    <div className="text-gray-800 leading-relaxed">
+      {isHTML ? (
+        <div
+          className="
+            passage-html
+            [&_table]:w-full
+            [&_table]:border-collapse
+            [&_th]:border
+            [&_td]:border
+            [&_th]:border-gray-400
+            [&_td]:border-gray-300
+            [&_th]:px-3
+            [&_td]:px-3
+            [&_th]:py-2
+            [&_td]:py-2
+            [&_caption]:font-semibold
+            [&_caption]:mb-2
+          "
+          dangerouslySetInnerHTML={{ __html: clean }}
+        />
+      ) : (
+        content.split("\n").map((line, i) => (
+          <p key={i} className="mb-2 whitespace-pre-line">{line}</p>
+        ))
+      )}
+    </div>
+  );
+};
+
+
 
 interface Question {
   id: number;
@@ -484,7 +524,7 @@ const TestInterface: React.FC = () => {
           <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 overflow-y-auto shadow-inner text-left">
             <h3 className="font-semibold text-gray-700 mb-3">Passage</h3>
             <div className="whitespace-pre-line text-gray-800 leading-relaxed text-sm">
-              {q.passage_text}
+              {renderPassage(q.passage_text)}
             </div>
           </div>
 

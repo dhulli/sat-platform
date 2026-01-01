@@ -19,7 +19,6 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.1",
-    "mysql2": "^3.15.1",
     "redis": "^5.8.3"
   },
   "devDependencies": {
@@ -28,7 +27,8 @@
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
-    "@types/node": "^24.7.0",
+    "@types/node": "^24.10.1",
+    "mysql2": "^3.15.3",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"

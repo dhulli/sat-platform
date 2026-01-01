@@ -5,7 +5,11 @@
     "dev": "concurrently \"npm run dev --prefix backend\" \"npm start --prefix frontend\""
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "@types/node": "^24.10.1",
+    "concurrently": "^9.2.1",
+    "mysql2": "^3.15.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "lucide-react": "^0.545.0"

@@ -1,0 +1,995 @@
+{
+  "exam_id": 1,
+  "section_label": "RW1",
+  "module": "reading_writing_1",
+  "distribution_by_micro": {
+    "CAT015": 2,
+    "CAT012": 1,
+    "CAT005": 2,
+    "CAT008": 3,
+    "CAT010": 2,
+    "CAT004": 1,
+    "CAT006": 3,
+    "CAT001": 3,
+    "CAT002": 2,
+    "CAT003": 2,
+    "CAT009": 2,
+    "CAT007": 2,
+    "CAT013": 1,
+    "CAT014": 1
+  },
+  "items": [
+    {
+      "qid": 299410,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 1,
+      "difficulty": 1,
+      "skill_category": "Form, Structure & Sense | Verb Tense/Aspect",
+      "question_text": "Which detail best supports adopting the signage change?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a gallery wing, staff added clearer labels and tracked outcomes on matched days before and after the change. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The <table><caption>Direction Requests per Hour</caption><thead><tr><th>Entrance</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>North</td><td>21</td><td>13</td></tr><tr><td>East</td><td>19</td><td>12</td></tr><tr><td>West</td><td>23</td><td>15</td></tr></tbody></table>",
+        "question": "Which detail best supports adopting the signage change?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L1",
+          "difficulty_1_10": 2,
+          "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, bounded conclusion.",
+          "category_id": "CAT015",
+          "code": "RW-SEC-FSS-TENSE",
+          "category": "Form, Structure & Sense",
+          "domain": "Standard English Conventions",
+          "micro_label": "Verb Tense/Aspect",
+          "word_count_excluding_html": 89,
+          "table_html": true
+        }
+      },
+      "options": [
+        "The exterior was repainted last summer.",
+        "A single visitor praised the building online.",
+        "Lobby noise increased during storms.",
+        "Requests for directions fell at each entrance after the signs were added."
+      ],
+      "correct_answer": "D",
+      "explanation": "All entrances show fewer direction requests, directly supporting the trial\u2019s goal without overreach."
+    },
+    {
+      "qid": 496059,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Form, Structure & Sense | Subject\u2013Verb Agreement",
+      "question_text": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a shoreline path, a pilot used a new rope guides to reduce crowd bunching, with notes entered in a ranger sheet. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L5",
+          "difficulty_1_10": 10,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT012",
+          "code": "RW-SEC-FSS-SVAGR",
+          "category": "Form, Structure & Sense",
+          "domain": "Standard English Conventions",
+          "micro_label": "Subject\u2013Verb Agreement",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "have been",
+        "is",
+        "are",
+        "were"
+      ],
+      "correct_answer": "B",
+      "explanation": "Singular subject 'set' takes 'is'."
+    },
+    {
+      "qid": 698717,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 1,
+      "difficulty": 1,
+      "skill_category": "Craft & Structure | Words in Context",
+      "question_text": "Which option best describes the passage\u2019s organization?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a shoreline path, a pilot used a new rope guides to reduce crowd bunching, with notes entered in a ranger sheet. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which option best describes the passage\u2019s organization?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L1",
+          "difficulty_1_10": 3,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT005",
+          "code": "RW-CS-WIC",
+          "category": "Craft & Structure",
+          "domain": "Craft & Structure",
+          "micro_label": "Words in Context",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "Prediction without data",
+        "Problem \u2192 pilot \u2192 adoption rule",
+        "Unrelated bullet list",
+        "Anecdote \u2192 digression \u2192 epilogue"
+      ],
+      "correct_answer": "B",
+      "explanation": "The sequence is problem, pilot, rule-of-adoption."
+    },
+    {
+      "qid": 478941,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 3,
+      "difficulty": 3,
+      "skill_category": "Expression of Ideas | Rhetorical Synthesis",
+      "question_text": "Which inference is most consistent with the data?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a shoreline path, staff added clearer labels and tracked outcomes on matched days before and after the change. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The <table><caption>Boardings by Stop</caption><thead><tr><th>Stop</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Library</td><td>58</td><td>65</td></tr><tr><td>Field</td><td>39</td><td>46</td></tr><tr><td>North</td><td>41</td><td>48</td></tr></tbody></table>",
+        "question": "Which inference is most consistent with the data?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L3",
+          "difficulty_1_10": 6,
+          "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, bounded conclusion.",
+          "category_id": "CAT008",
+          "code": "RW-EI-RSYN",
+          "category": "Expression of Ideas",
+          "domain": "Expression of Ideas",
+          "micro_label": "Rhetorical Synthesis",
+          "word_count_excluding_html": 88,
+          "table_html": true
+        }
+      },
+      "options": [
+        "Riders abandoned the route after the change.",
+        "Clearer labels likely contributed to modest increases at all listed stops.",
+        "Buses began arriving early at every stop.",
+        "Total ridership doubled overnight."
+      ],
+      "correct_answer": "B",
+      "explanation": "Each stop shows a modest increase; claims about schedules or dramatic jumps are not supported."
+    },
+    {
+      "qid": 277641,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Boundaries | Between sentences",
+      "question_text": "Which inference is most consistent with the data?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a shoreline path, staff added clearer labels and tracked outcomes on matched days before and after the change. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The <table><caption>Boardings by Stop</caption><thead><tr><th>Stop</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Library</td><td>58</td><td>65</td></tr><tr><td>Field</td><td>39</td><td>46</td></tr><tr><td>North</td><td>41</td><td>48</td></tr></tbody></table>",
+        "question": "Which inference is most consistent with the data?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L5",
+          "difficulty_1_10": 9,
+          "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, bounded conclusion.",
+          "category_id": "CAT010",
+          "code": "RW-SEC-BND-BET",
+          "category": "Boundaries",
+          "domain": "Standard English Conventions",
+          "micro_label": "Between sentences",
+          "word_count_excluding_html": 88,
+          "table_html": true
+        }
+      },
+      "options": [
+        "Riders abandoned the route after the change.",
+        "Total ridership doubled overnight.",
+        "Clearer labels likely contributed to modest increases at all listed stops.",
+        "Buses began arriving early at every stop."
+      ],
+      "correct_answer": "C",
+      "explanation": "Each stop shows a modest increase; claims about schedules or dramatic jumps are not supported."
+    },
+    {
+      "qid": 100795,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Information & Ideas | Inferences",
+      "question_text": "Which choice best states the central idea of the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a community garden, a pilot used a new painted lane to reduce wandering carts, with notes entered in a steward log. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which choice best states the central idea of the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L5",
+          "difficulty_1_10": 9,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT004",
+          "code": "RW-INFO-INF",
+          "category": "Information & Ideas",
+          "domain": "Information & Ideas",
+          "micro_label": "Inferences",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "Adopt small changes that show consistent gains under similar conditions.",
+        "Publicity is the most reliable guide for decisions about services.",
+        "One lucky day is enough to guarantee success.",
+        "Rising costs are the goal of any careful pilot."
+      ],
+      "correct_answer": "A",
+      "explanation": "The passage prioritizes consistent, measured gains and a rule to adopt only on repetition."
+    },
+    {
+      "qid": 949239,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 1,
+      "difficulty": 1,
+      "skill_category": "Craft & Structure | Text Structure & Purpose",
+      "question_text": "What is the author\u2019s primary purpose in the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a community pool, a pilot used a new quiet hour to reduce whistle calls, with notes entered in a shift sheet. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "What is the author\u2019s primary purpose in the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L1",
+          "difficulty_1_10": 2,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT006",
+          "code": "RW-CS-TSP",
+          "category": "Craft & Structure",
+          "domain": "Craft & Structure",
+          "micro_label": "Text Structure & Purpose",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "to advertise unrelated programs",
+        "to discourage public use of services",
+        "to announce a permanent policy without review",
+        "to argue for decisions grounded in repeated, measured outcomes"
+      ],
+      "correct_answer": "D",
+      "explanation": "The writer advocates for evidence-first adoption after repeated results."
+    },
+    {
+      "qid": 380420,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Craft & Structure | Words in Context",
+      "question_text": "Which option best describes the passage\u2019s organization?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a neighborhood clinic, a pilot used a new express desk to reduce morning queues, with notes entered in a triage register. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which option best describes the passage\u2019s organization?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 4,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT005",
+          "code": "RW-CS-WIC",
+          "category": "Craft & Structure",
+          "domain": "Craft & Structure",
+          "micro_label": "Words in Context",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "Anecdote \u2192 digression \u2192 epilogue",
+        "Problem \u2192 pilot \u2192 adoption rule",
+        "Unrelated bullet list",
+        "Prediction without data"
+      ],
+      "correct_answer": "B",
+      "explanation": "The sequence is problem, pilot, rule-of-adoption."
+    },
+    {
+      "qid": 995794,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Information & Ideas | Central Ideas & Details",
+      "question_text": "Which choice best summarizes the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a gallery wing, a pilot used a new caption labels to reduce visitor loops, with notes entered in a docent log. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which choice best summarizes the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 4,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT001",
+          "code": "RW-INFO-CID",
+          "category": "Information & Ideas",
+          "domain": "Information & Ideas",
+          "micro_label": "Central Ideas & Details",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "The test reduced access and increased complaints at once.",
+        "A brief trial tied to a clear metric should stay only if results repeat.",
+        "The team stopped measuring to speed adoption.",
+        "Officials promised a permanent program after one busy hour."
+      ],
+      "correct_answer": "B",
+      "explanation": "A proper summary mentions the trial, the metric, and the replication rule."
+    },
+    {
+      "qid": 848421,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Information & Ideas | Command of Evidence \u2014 Textual",
+      "question_text": "Which choice best summarizes the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a gallery wing, a pilot used a new caption labels to reduce visitor loops, with notes entered in a docent log. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which choice best summarizes the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L4",
+          "difficulty_1_10": 7,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT002",
+          "code": "RW-INFO-COE-TXT",
+          "category": "Information & Ideas",
+          "domain": "Information & Ideas",
+          "micro_label": "Command of Evidence \u2014 Textual",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "A brief trial tied to a clear metric should stay only if results repeat.",
+        "Officials promised a permanent program after one busy hour.",
+        "The test reduced access and increased complaints at once.",
+        "The team stopped measuring to speed adoption."
+      ],
+      "correct_answer": "A",
+      "explanation": "A proper summary mentions the trial, the metric, and the replication rule."
+    },
+    {
+      "qid": 512893,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Information & Ideas | Command of Evidence \u2014 Quantitative",
+      "question_text": "Which inference is best supported by the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a lakeside trail, a pilot used a new mile plates to reduce backtracking, with notes entered in a steward journal. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often wilt",
+        "question": "Which inference is best supported by the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 3,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT003",
+          "code": "RW-INFO-COE-QNT",
+          "category": "Information & Ideas",
+          "domain": "Information & Ideas",
+          "micro_label": "Command of Evidence \u2014 Quantitative",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "The trial ensures permanent success everywhere immediately.",
+        "The pilot eliminated the need for any evaluation.",
+        "The team avoided all records and relied on slogans.",
+        "The change likely improved local behavior when staffing was similar, though broader effects remain untested."
+      ],
+      "correct_answer": "D",
+      "explanation": "A bounded inference fits the evidence; sweeping claims are not supported."
+    },
+    {
+      "qid": 240239,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 1,
+      "difficulty": 1,
+      "skill_category": "Information & Ideas | Command of Evidence \u2014 Textual",
+      "question_text": "Which choice best states the central idea of the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a campus library, a pilot used a new quiet block to reduce seat hunting, with notes entered in a monitor ledger. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which choice best states the central idea of the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L1",
+          "difficulty_1_10": 1,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT002",
+          "code": "RW-INFO-COE-TXT",
+          "category": "Information & Ideas",
+          "domain": "Information & Ideas",
+          "micro_label": "Command of Evidence \u2014 Textual",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "Rising costs are the goal of any careful pilot.",
+        "Publicity is the most reliable guide for decisions about services.",
+        "Adopt small changes that show consistent gains under similar conditions.",
+        "One lucky day is enough to guarantee success."
+      ],
+      "correct_answer": "C",
+      "explanation": "The passage prioritizes consistent, measured gains and a rule to adopt only on repetition."
+    },
+    {
+      "qid": 924629,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 1,
+      "difficulty": 1,
+      "skill_category": "Form, Structure & Sense | Verb Tense/Aspect",
+      "question_text": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a shoreline path, a pilot used a new rope guides to reduce crowd bunching, with notes entered in a ranger sheet. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L1",
+          "difficulty_1_10": 1,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT015",
+          "code": "RW-SEC-FSS-TENSE",
+          "category": "Form, Structure & Sense",
+          "domain": "Standard English Conventions",
+          "micro_label": "Verb Tense/Aspect",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "are",
+        "have been",
+        "were",
+        "is"
+      ],
+      "correct_answer": "D",
+      "explanation": "Singular subject 'set' takes 'is'."
+    },
+    {
+      "qid": 706737,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 4,
+      "difficulty": 4,
+      "skill_category": "Expression of Ideas | Transitions",
+      "question_text": "Which statement best synthesizes the information to support the recommendation?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a gallery wing, a pilot used a new caption labels to reduce visitor loops, with notes entered in a docent log. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which statement best synthesizes the information to support the recommendation?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L4",
+          "difficulty_1_10": 8,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT009",
+          "code": "RW-EI-TRANS",
+          "category": "Expression of Ideas",
+          "domain": "Expression of Ideas",
+          "micro_label": "Transitions",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "Adding unrelated programs clarifies the data without measurement.",
+        "Slogans are more reliable than records when judging results.",
+        "Comparing outcomes across comparable days provides a basis for deciding whether the change should remain.",
+        "Because conditions vary, results cannot be compared at all."
+      ],
+      "correct_answer": "C",
+      "explanation": "The recommendation rests on like-for-like comparisons across days."
+    },
+    {
+      "qid": 315656,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 1,
+      "difficulty": 1,
+      "skill_category": "Information & Ideas | Central Ideas & Details",
+      "question_text": "Which inference is best supported by the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a lakeside trail, a pilot used a new mile plates to reduce backtracking, with notes entered in a steward journal. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often wilt",
+        "question": "Which inference is best supported by the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L1",
+          "difficulty_1_10": 3,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT001",
+          "code": "RW-INFO-CID",
+          "category": "Information & Ideas",
+          "domain": "Information & Ideas",
+          "micro_label": "Central Ideas & Details",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "The team avoided all records and relied on slogans.",
+        "The trial ensures permanent success everywhere immediately.",
+        "The pilot eliminated the need for any evaluation.",
+        "The change likely improved local behavior when staffing was similar, though broader effects remain untested."
+      ],
+      "correct_answer": "D",
+      "explanation": "A bounded inference fits the evidence; sweeping claims are not supported."
+    },
+    {
+      "qid": 64730,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 3,
+      "difficulty": 3,
+      "skill_category": "Expression of Ideas | Rhetorical Synthesis",
+      "question_text": "Which statement best synthesizes the information to support the recommendation?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a shoreline path, a pilot used a new rope guides to reduce crowd bunching, with notes entered in a ranger sheet. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which statement best synthesizes the information to support the recommendation?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L3",
+          "difficulty_1_10": 6,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT008",
+          "code": "RW-EI-RSYN",
+          "category": "Expression of Ideas",
+          "domain": "Expression of Ideas",
+          "micro_label": "Rhetorical Synthesis",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "Comparing outcomes across comparable days provides a basis for deciding whether the change should remain.",
+        "Because conditions vary, results cannot be compared at all.",
+        "Slogans are more reliable than records when judging results.",
+        "Adding unrelated programs clarifies the data without measurement."
+      ],
+      "correct_answer": "A",
+      "explanation": "The recommendation rests on like-for-like comparisons across days."
+    },
+    {
+      "qid": 286919,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Craft & Structure | Cross-Text Connections",
+      "question_text": "What is the author\u2019s primary purpose in the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a neighborhood clinic, a pilot used a new express desk to reduce morning queues, with notes entered in a triage register. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "What is the author\u2019s primary purpose in the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 4,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT007",
+          "code": "RW-CS-CTC",
+          "category": "Craft & Structure",
+          "domain": "Craft & Structure",
+          "micro_label": "Cross-Text Connections",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "to argue for decisions grounded in repeated, measured outcomes",
+        "to advertise unrelated programs",
+        "to announce a permanent policy without review",
+        "to discourage public use of services"
+      ],
+      "correct_answer": "A",
+      "explanation": "The writer advocates for evidence-first adoption after repeated results."
+    },
+    {
+      "qid": 678829,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Expression of Ideas | Rhetorical Synthesis",
+      "question_text": "Which statement best synthesizes the information to support the recommendation?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a campus library, a pilot used a new quiet block to reduce seat hunting, with notes entered in a monitor ledger. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which statement best synthesizes the information to support the recommendation?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 3,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT008",
+          "code": "RW-EI-RSYN",
+          "category": "Expression of Ideas",
+          "domain": "Expression of Ideas",
+          "micro_label": "Rhetorical Synthesis",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "Because conditions vary, results cannot be compared at all.",
+        "Comparing outcomes across comparable days provides a basis for deciding whether the change should remain.",
+        "Slogans are more reliable than records when judging results.",
+        "Adding unrelated programs clarifies the data without measurement."
+      ],
+      "correct_answer": "B",
+      "explanation": "The recommendation rests on like-for-like comparisons across days."
+    },
+    {
+      "qid": 777506,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Boundaries | Between sentences",
+      "question_text": "Which choice correctly joins the two independent clauses?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a lakeside trail, a pilot used a new mile plates to reduce backtracking, with notes entered in a steward journal. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often wilt",
+        "question": "Which choice correctly joins the two independent clauses?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 4,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT010",
+          "code": "RW-SEC-BND-BET",
+          "category": "Boundaries",
+          "domain": "Standard English Conventions",
+          "micro_label": "Between sentences",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "The pilot improved morning flow: the team will repeat the test next month",
+        "The pilot improved morning flow; the team will repeat the test next month.",
+        "The pilot improved morning flow, and the team will repeat the test next month.",
+        "The pilot improved morning flow the team will repeat the test next month."
+      ],
+      "correct_answer": "B",
+      "explanation": "Semicolon or comma+and is correct; comma splice and colon are not."
+    },
+    {
+      "qid": 550401,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Expression of Ideas | Transitions",
+      "question_text": "Which statement best synthesizes the information to support the recommendation?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a transit hub, a pilot used a new numbered gates to reduce last\u2011minute dashes, with notes entered in a dispatcher notes. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which statement best synthesizes the information to support the recommendation?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 3,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT009",
+          "code": "RW-EI-TRANS",
+          "category": "Expression of Ideas",
+          "domain": "Expression of Ideas",
+          "micro_label": "Transitions",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "Slogans are more reliable than records when judging results.",
+        "Because conditions vary, results cannot be compared at all.",
+        "Comparing outcomes across comparable days provides a basis for deciding whether the change should remain.",
+        "Adding unrelated programs clarifies the data without measurement."
+      ],
+      "correct_answer": "C",
+      "explanation": "The recommendation rests on like-for-like comparisons across days."
+    },
+    {
+      "qid": 764711,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Craft & Structure | Text Structure & Purpose",
+      "question_text": "Which inference is most consistent with the data?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a lakeside trail, staff added clearer labels and tracked outcomes on matched days before and after the change. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The <table><caption>Boardings by Stop</caption><thead><tr><th>Stop</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Library</td><td>58</td><td>65</td></tr><tr><td>Field</td><td>39</td><td>46</td></tr><tr><td>North</td><td>41</td><td>48</td></tr></tbody></table>",
+        "question": "Which inference is most consistent with the data?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 3,
+          "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, bounded conclusion.",
+          "category_id": "CAT006",
+          "code": "RW-CS-TSP",
+          "category": "Craft & Structure",
+          "domain": "Craft & Structure",
+          "micro_label": "Text Structure & Purpose",
+          "word_count_excluding_html": 88,
+          "table_html": true
+        }
+      },
+      "options": [
+        "Total ridership doubled overnight.",
+        "Clearer labels likely contributed to modest increases at all listed stops.",
+        "Buses began arriving early at every stop.",
+        "Riders abandoned the route after the change."
+      ],
+      "correct_answer": "B",
+      "explanation": "Each stop shows a modest increase; claims about schedules or dramatic jumps are not supported."
+    },
+    {
+      "qid": 775724,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 3,
+      "difficulty": 3,
+      "skill_category": "Form, Structure & Sense | Pronoun\u2013Antecedent",
+      "question_text": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a gallery wing, a pilot used a new caption labels to reduce visitor loops, with notes entered in a docent log. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L3",
+          "difficulty_1_10": 6,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT013",
+          "code": "RW-SEC-FSS-PRON",
+          "category": "Form, Structure & Sense",
+          "domain": "Standard English Conventions",
+          "micro_label": "Pronoun\u2013Antecedent",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "are",
+        "have been",
+        "were",
+        "is"
+      ],
+      "correct_answer": "D",
+      "explanation": "Singular subject 'set' takes 'is'."
+    },
+    {
+      "qid": 43456,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 3,
+      "difficulty": 3,
+      "skill_category": "Craft & Structure | Cross-Text Connections",
+      "question_text": "What is the author\u2019s primary purpose in the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a lakeside trail, a pilot used a new mile plates to reduce backtracking, with notes entered in a steward journal. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often wilt",
+        "question": "What is the author\u2019s primary purpose in the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L3",
+          "difficulty_1_10": 6,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT007",
+          "code": "RW-CS-CTC",
+          "category": "Craft & Structure",
+          "domain": "Craft & Structure",
+          "micro_label": "Cross-Text Connections",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "to discourage public use of services",
+        "to advertise unrelated programs",
+        "to announce a permanent policy without review",
+        "to argue for decisions grounded in repeated, measured outcomes"
+      ],
+      "correct_answer": "D",
+      "explanation": "The writer advocates for evidence-first adoption after repeated results."
+    },
+    {
+      "qid": 22509,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 3,
+      "difficulty": 3,
+      "skill_category": "Craft & Structure | Text Structure & Purpose",
+      "question_text": "What is the author\u2019s primary purpose in the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a community garden, a pilot used a new painted lane to reduce wandering carts, with notes entered in a steward log. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "What is the author\u2019s primary purpose in the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L3",
+          "difficulty_1_10": 5,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT006",
+          "code": "RW-CS-TSP",
+          "category": "Craft & Structure",
+          "domain": "Craft & Structure",
+          "micro_label": "Text Structure & Purpose",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "to advertise unrelated programs",
+        "to argue for decisions grounded in repeated, measured outcomes",
+        "to discourage public use of services",
+        "to announce a permanent policy without review"
+      ],
+      "correct_answer": "B",
+      "explanation": "The writer advocates for evidence-first adoption after repeated results."
+    },
+    {
+      "qid": 933760,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Form, Structure & Sense | Verb Finiteness",
+      "question_text": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a campus library, a pilot used a new quiet block to reduce seat hunting, with notes entered in a monitor ledger. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 4,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT014",
+          "code": "RW-SEC-FSS-VFIN",
+          "category": "Form, Structure & Sense",
+          "domain": "Standard English Conventions",
+          "micro_label": "Verb Finiteness",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "is",
+        "were",
+        "are",
+        "have been"
+      ],
+      "correct_answer": "A",
+      "explanation": "Singular subject 'set' takes 'is'."
+    },
+    {
+      "qid": 160808,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 2,
+      "difficulty": 2,
+      "skill_category": "Information & Ideas | Command of Evidence \u2014 Quantitative",
+      "question_text": "Which choice best summarizes the passage?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a shoreline path, a pilot used a new rope guides to reduce crowd bunching, with notes entered in a ranger sheet. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The tone was steady rather than dramatic, on purpose, because dramatic claims often",
+        "question": "Which choice best summarizes the passage?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L2",
+          "difficulty_1_10": 4,
+          "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+          "category_id": "CAT003",
+          "code": "RW-INFO-COE-QNT",
+          "category": "Information & Ideas",
+          "domain": "Information & Ideas",
+          "micro_label": "Command of Evidence \u2014 Quantitative",
+          "word_count": 100,
+          "table_html": false
+        }
+      },
+      "options": [
+        "A brief trial tied to a clear metric should stay only if results repeat.",
+        "The team stopped measuring to speed adoption.",
+        "The test reduced access and increased complaints at once.",
+        "Officials promised a permanent program after one busy hour."
+      ],
+      "correct_answer": "A",
+      "explanation": "A proper summary mentions the trial, the metric, and the replication rule."
+    },
+    {
+      "qid": 278950,
+      "exam_id": 1,
+      "module": "reading_writing_1",
+      "section_label": "RW1",
+      "level": 5,
+      "difficulty": 5,
+      "skill_category": "Information & Ideas | Central Ideas & Details",
+      "question_text": "Which inference is most consistent with the data?",
+      "question_data": {
+        "type": "passage_mcq",
+        "passage": "In a gallery wing, staff added clearer labels and tracked outcomes on matched days before and after the change. A short pilot ran across comparable days, with a simple metric tracked at the same times. The team wrote plain notes that tied actions to outcomes and flagged limits that could blur the signal. They avoided hype, instead setting a rule: keep only what repeats under similar staffing and weather. Readers were invited to check the figures and ask questions before any change became routine. The <table><caption>Boardings by Stop</caption><thead><tr><th>Stop</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Library</td><td>58</td><td>65</td></tr><tr><td>Field</td><td>39</td><td>46</td></tr><tr><td>North</td><td>41</td><td>48</td></tr></tbody></table>",
+        "question": "Which inference is most consistent with the data?",
+        "meta": {
+          "section_label": "RW1",
+          "level": "L5",
+          "difficulty_1_10": 10,
+          "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, bounded conclusion.",
+          "category_id": "CAT001",
+          "code": "RW-INFO-CID",
+          "category": "Information & Ideas",
+          "domain": "Information & Ideas",
+          "micro_label": "Central Ideas & Details",
+          "word_count_excluding_html": 88,
+          "table_html": true
+        }
+      },
+      "options": [
+        "Total ridership doubled overnight.",
+        "Clearer labels likely contributed to modest increases at all listed stops.",
+        "Buses began arriving early at every stop.",
+        "Riders abandoned the route after the change."
+      ],
+      "correct_answer": "B",
+      "explanation": "Each stop shows a modest increase; claims about schedules or dramatic jumps are not supported."
+    }
+  ]
+}

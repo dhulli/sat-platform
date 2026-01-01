@@ -1,0 +1,1003 @@
+{
+  "generated_at": "now",
+  "data": {
+    "blob": {
+      "rw2_easy": {
+        "exam_id": 1,
+        "section_label": "RW2",
+        "module": "reading_writing_2",
+        "distribution_by_micro": {
+          "CAT001": 3,
+          "CAT006": 3,
+          "CAT008": 3,
+          "CAT015": 2,
+          "CAT010": 2,
+          "CAT002": 2,
+          "CAT003": 2,
+          "CAT004": 1,
+          "CAT005": 2,
+          "CAT007": 2,
+          "CAT009": 2,
+          "CAT012": 1,
+          "CAT013": 1,
+          "CAT014": 1
+        },
+        "items": [
+          {
+            "qid": 11012,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Craft & Structure | Words in Context",
+            "question_text": "What is the author\u2019s primary purpose in the passage?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a bus stop, a team tested a queue markers to address last-second sprints and logged outcomes in a field notes. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "What is the author\u2019s primary purpose in the passage?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT005",
+                "code": "RW-CS-WIC",
+                "category": "Craft & Structure",
+                "domain": "Craft & Structure",
+                "micro_label": "Words in Context",
+                "word_count": 82,
+                "table_html": false
+              }
+            },
+            "options": [
+              "to discourage public use of services",
+              "to argue for decisions grounded in repeated, measured outcomes",
+              "to announce a permanent policy without review",
+              "to advertise unrelated programs"
+            ],
+            "correct_answer": "B",
+            "explanation": "The writer urges evidence-first adoption after repeated results."
+          },
+          {
+            "qid": 11026,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Boundaries | Between sentences",
+            "question_text": "Which choice correctly joins the two independent clauses?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a pool, a team tested a quiet hour to address whistle calls and logged outcomes in a shift log. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice correctly joins the two independent clauses?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 4,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT010",
+                "code": "RW-SEC-BND-BET",
+                "category": "Boundaries",
+                "domain": "Standard English Conventions",
+                "micro_label": "Between sentences",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "The pilot improved morning flow, and the team will repeat the test next month.",
+              "The pilot improved morning flow the team will repeat the test next month.",
+              "The pilot improved morning flow: the team will repeat the test next month",
+              "The pilot improved morning flow; the team will repeat the test next month."
+            ],
+            "correct_answer": "D",
+            "explanation": "Semicolon (or comma+and) is correct; comma splice/colon misuse are wrong."
+          },
+          {
+            "qid": 11019,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Expression of Ideas | Transitions",
+            "question_text": "Which statement best synthesizes the information to support the recommendation?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a pool, a team tested a quiet hour to address whistle calls and logged outcomes in a shift log. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which statement best synthesizes the information to support the recommendation?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT009",
+                "code": "RW-EI-TRANS",
+                "category": "Expression of Ideas",
+                "domain": "Expression of Ideas",
+                "micro_label": "Transitions",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "Because conditions vary, results cannot be compared at all.",
+              "Slogans are more reliable than records when judging results.",
+              "Pairing costs with outcomes across weeks provides a basis for deciding whether the change should stay.",
+              "Expanding unrelated services will clarify the evidence."
+            ],
+            "correct_answer": "C",
+            "explanation": "Synthesis links measures and the adoption rule."
+          },
+          {
+            "qid": 11011,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Information & Ideas | Command of Evidence \u2014 Quantitative",
+            "question_text": "Which choice best states the central idea of the passage?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a co-op, a team tested a early hour to address cost recovery and logged outcomes in a register report. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice best states the central idea of the passage?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 2,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT003",
+                "code": "RW-INFO-COE-QNT",
+                "category": "Information & Ideas",
+                "domain": "Information & Ideas",
+                "micro_label": "Command of Evidence \u2014 Quantitative",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "The trial aimed to raise costs to justify expansion.",
+              "Publicity is the most reliable guide for all decisions.",
+              "Small, measured changes that repeatedly show results should be adopted.",
+              "A single weekend is enough to prove any reform."
+            ],
+            "correct_answer": "C",
+            "explanation": "The passage values measured, repeated results and conditional adoption."
+          },
+          {
+            "qid": 11006,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Information & Ideas | Command of Evidence \u2014 Textual",
+            "question_text": "Which choice best states the central idea of the passage?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a bus stop, a team tested a queue markers to address last-second sprints and logged outcomes in a field notes. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice best states the central idea of the passage?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 2,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT002",
+                "code": "RW-INFO-COE-TXT",
+                "category": "Information & Ideas",
+                "domain": "Information & Ideas",
+                "micro_label": "Command of Evidence \u2014 Textual",
+                "word_count": 82,
+                "table_html": false
+              }
+            },
+            "options": [
+              "Small, measured changes that repeatedly show results should be adopted.",
+              "The trial aimed to raise costs to justify expansion.",
+              "Publicity is the most reliable guide for all decisions.",
+              "A single weekend is enough to prove any reform."
+            ],
+            "correct_answer": "A",
+            "explanation": "The passage values measured, repeated results and conditional adoption."
+          },
+          {
+            "qid": 11023,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Form, Structure & Sense | Pronoun\u2013Antecedent",
+            "question_text": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a theater, a team tested a seat map to address door clumps and logged outcomes in a usher log. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 1,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT013",
+                "code": "RW-SEC-FSS-PRON",
+                "category": "Form, Structure & Sense",
+                "domain": "Standard English Conventions",
+                "micro_label": "Pronoun\u2013Antecedent",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "are",
+              "were",
+              "is",
+              "have been"
+            ],
+            "correct_answer": "C",
+            "explanation": "Singular subject 'set' takes 'is'."
+          },
+          {
+            "qid": 11025,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Form, Structure & Sense | Verb Tense/Aspect",
+            "question_text": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a bus stop, a team tested a queue markers to address last-second sprints and logged outcomes in a field notes. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT015",
+                "code": "RW-SEC-FSS-TENSE",
+                "category": "Form, Structure & Sense",
+                "domain": "Standard English Conventions",
+                "micro_label": "Verb Tense/Aspect",
+                "word_count": 82,
+                "table_html": false
+              }
+            },
+            "options": [
+              "were",
+              "is",
+              "have been",
+              "are"
+            ],
+            "correct_answer": "B",
+            "explanation": "Singular subject 'set' takes 'is'."
+          },
+          {
+            "qid": 11000,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Information & Ideas | Central Ideas & Details",
+            "question_text": "Which inference is most consistent with the data?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "Staff added clearer labels and recorded changes across similar days. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early. <table><caption>Boardings by Stop</caption><thead><tr><th>Stop</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Library</td><td>55</td><td>63</td></tr><tr><td>Field</td><td>37</td><td>44</td></tr><tr><td>North</td><td>42</td><td>49</td></tr></tbody></table>",
+              "question": "Which inference is most consistent with the data?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, cautious conclusion.",
+                "category_id": "CAT001",
+                "code": "RW-INFO-CID",
+                "category": "Information & Ideas",
+                "domain": "Information & Ideas",
+                "micro_label": "Central Ideas & Details",
+                "word_count_excluding_html": 74,
+                "table_html": true
+              }
+            },
+            "options": [
+              "The buses began arriving earlier than scheduled at all stops.",
+              "Riders avoided the route after the change.",
+              "The system doubled total ridership overnight.",
+              "Clearer labeling likely contributed to modest increases at all listed stops."
+            ],
+            "correct_answer": "D",
+            "explanation": "All stops show small gains; avoid overclaiming beyond the table's scope."
+          },
+          {
+            "qid": 11009,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Information & Ideas | Central Ideas & Details",
+            "question_text": "Which choice best summarizes the passage?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a bus stop, a team tested a queue markers to address last-second sprints and logged outcomes in a field notes. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice best summarizes the passage?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 4,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT001",
+                "code": "RW-INFO-CID",
+                "category": "Information & Ideas",
+                "domain": "Information & Ideas",
+                "micro_label": "Central Ideas & Details",
+                "word_count": 82,
+                "table_html": false
+              }
+            },
+            "options": [
+              "The team abandoned records to move faster.",
+              "A modest pilot linked to simple measures will be kept only if results repeat.",
+              "The test reduced access and increased complaints immediately.",
+              "Officials promised a permanent program after one promising day."
+            ],
+            "correct_answer": "B",
+            "explanation": "Summary must capture trial design, outcomes, and conditional adoption."
+          },
+          {
+            "qid": 11015,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Craft & Structure | Words in Context",
+            "question_text": "What is the author\u2019s primary purpose in the passage?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a library hours, a team tested a quiet study block to address late arrivals and logged outcomes in a attendance log. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "What is the author\u2019s primary purpose in the passage?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT005",
+                "code": "RW-CS-WIC",
+                "category": "Craft & Structure",
+                "domain": "Craft & Structure",
+                "micro_label": "Words in Context",
+                "word_count": 83,
+                "table_html": false
+              }
+            },
+            "options": [
+              "to advertise unrelated programs",
+              "to discourage public use of services",
+              "to announce a permanent policy without review",
+              "to argue for decisions grounded in repeated, measured outcomes"
+            ],
+            "correct_answer": "D",
+            "explanation": "The writer urges evidence-first adoption after repeated results."
+          },
+          {
+            "qid": 11018,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Expression of Ideas | Rhetorical Synthesis",
+            "question_text": "Which statement best synthesizes the information to support the recommendation?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a market, a team tested a placards to address aisle bottlenecks and logged outcomes in a volunteer counts. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which statement best synthesizes the information to support the recommendation?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 2,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT008",
+                "code": "RW-EI-RSYN",
+                "category": "Expression of Ideas",
+                "domain": "Expression of Ideas",
+                "micro_label": "Rhetorical Synthesis",
+                "word_count": 80,
+                "table_html": false
+              }
+            },
+            "options": [
+              "Slogans are more reliable than records when judging results.",
+              "Because conditions vary, results cannot be compared at all.",
+              "Pairing costs with outcomes across weeks provides a basis for deciding whether the change should stay.",
+              "Expanding unrelated services will clarify the evidence."
+            ],
+            "correct_answer": "C",
+            "explanation": "Synthesis links measures and the adoption rule."
+          },
+          {
+            "qid": 11007,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Information & Ideas | Command of Evidence \u2014 Quantitative",
+            "question_text": "Which choice best states the central idea of the passage?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a park path, a team tested a gravel strip to address detours and logged outcomes in a maintenance ledger. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice best states the central idea of the passage?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 1,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT003",
+                "code": "RW-INFO-COE-QNT",
+                "category": "Information & Ideas",
+                "domain": "Information & Ideas",
+                "micro_label": "Command of Evidence \u2014 Quantitative",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "Publicity is the most reliable guide for all decisions.",
+              "A single weekend is enough to prove any reform.",
+              "Small, measured changes that repeatedly show results should be adopted.",
+              "The trial aimed to raise costs to justify expansion."
+            ],
+            "correct_answer": "C",
+            "explanation": "The passage values measured, repeated results and conditional adoption."
+          },
+          {
+            "qid": 11010,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Information & Ideas | Command of Evidence \u2014 Textual",
+            "question_text": "Which inference is best supported by the passage?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a trail, a team tested a mile markers to address backtracking and logged outcomes in a steward notebook. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which inference is best supported by the passage?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 4,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT002",
+                "code": "RW-INFO-COE-TXT",
+                "category": "Information & Ideas",
+                "domain": "Information & Ideas",
+                "micro_label": "Command of Evidence \u2014 Textual",
+                "word_count": 80,
+                "table_html": false
+              }
+            },
+            "options": [
+              "The change reduced the need for any record-keeping.",
+              "The team ignored all evidence in making choices.",
+              "The change likely improved local behavior under similar staffing, although broader effects remain untested.",
+              "The test guaranteed success everywhere immediately."
+            ],
+            "correct_answer": "C",
+            "explanation": "A limited, cautious inference fits the evidence."
+          },
+          {
+            "qid": 11001,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Craft & Structure | Text Structure & Purpose",
+            "question_text": "Which inference is most consistent with the data?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "Staff added clearer labels and recorded changes across similar days. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early. <table><caption>Boardings by Stop</caption><thead><tr><th>Stop</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Library</td><td>55</td><td>63</td></tr><tr><td>Field</td><td>37</td><td>44</td></tr><tr><td>North</td><td>42</td><td>49</td></tr></tbody></table>",
+              "question": "Which inference is most consistent with the data?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, cautious conclusion.",
+                "category_id": "CAT006",
+                "code": "RW-CS-TSP",
+                "category": "Craft & Structure",
+                "domain": "Craft & Structure",
+                "micro_label": "Text Structure & Purpose",
+                "word_count_excluding_html": 74,
+                "table_html": true
+              }
+            },
+            "options": [
+              "The system doubled total ridership overnight.",
+              "The buses began arriving earlier than scheduled at all stops.",
+              "Clearer labeling likely contributed to modest increases at all listed stops.",
+              "Riders avoided the route after the change."
+            ],
+            "correct_answer": "C",
+            "explanation": "All stops show small gains; avoid overclaiming beyond the table's scope."
+          },
+          {
+            "qid": 11002,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Expression of Ideas | Rhetorical Synthesis",
+            "question_text": "Which conclusion is best supported by the table and description?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "Staff added clearer labels and recorded changes across similar days. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early. <table><caption>Average Wait (minutes)</caption><thead><tr><th>Day</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Mon</td><td>18</td><td>12</td></tr><tr><td>Tue</td><td>17</td><td>11</td></tr><tr><td>Wed</td><td>19</td><td>13</td></tr></tbody></table>",
+              "question": "Which conclusion is best supported by the table and description?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, cautious conclusion.",
+                "category_id": "CAT008",
+                "code": "RW-EI-RSYN",
+                "category": "Expression of Ideas",
+                "domain": "Expression of Ideas",
+                "micro_label": "Rhetorical Synthesis",
+                "word_count_excluding_html": 74,
+                "table_html": true
+              }
+            },
+            "options": [
+              "The change increased waits on all days by several minutes.",
+              "The table proves the system will work in every city.",
+              "Average waits fell by about six to seven minutes on each listed day after the change.",
+              "The table shows no difference between days."
+            ],
+            "correct_answer": "C",
+            "explanation": "All three days show a consistent decrease from the 'Before' to 'After' columns by roughly 6\u20137 minutes."
+          },
+          {
+            "qid": 11003,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Form, Structure & Sense | Verb Tense/Aspect",
+            "question_text": "Which inference is most consistent with the data?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "Staff added clearer labels and recorded changes across similar days. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early. <table><caption>Boardings by Stop</caption><thead><tr><th>Stop</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Library</td><td>55</td><td>63</td></tr><tr><td>Field</td><td>37</td><td>44</td></tr><tr><td>North</td><td>42</td><td>49</td></tr></tbody></table>",
+              "question": "Which inference is most consistent with the data?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 4,
+                "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, cautious conclusion.",
+                "category_id": "CAT015",
+                "code": "RW-SEC-FSS-TENSE",
+                "category": "Form, Structure & Sense",
+                "domain": "Standard English Conventions",
+                "micro_label": "Verb Tense/Aspect",
+                "word_count_excluding_html": 74,
+                "table_html": true
+              }
+            },
+            "options": [
+              "Clearer labeling likely contributed to modest increases at all listed stops.",
+              "The system doubled total ridership overnight.",
+              "Riders avoided the route after the change.",
+              "The buses began arriving earlier than scheduled at all stops."
+            ],
+            "correct_answer": "A",
+            "explanation": "All stops show small gains; avoid overclaiming beyond the table's scope."
+          },
+          {
+            "qid": 11022,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Form, Structure & Sense | Subject\u2013Verb Agreement",
+            "question_text": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a bus stop, a team tested a queue markers to address last-second sprints and logged outcomes in a field notes. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 4,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT012",
+                "code": "RW-SEC-FSS-SVAGR",
+                "category": "Form, Structure & Sense",
+                "domain": "Standard English Conventions",
+                "micro_label": "Subject\u2013Verb Agreement",
+                "word_count": 82,
+                "table_html": false
+              }
+            },
+            "options": [
+              "were",
+              "are",
+              "have been",
+              "is"
+            ],
+            "correct_answer": "D",
+            "explanation": "Singular subject 'set' takes 'is'."
+          },
+          {
+            "qid": 11024,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Form, Structure & Sense | Verb Finiteness",
+            "question_text": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a park path, a team tested a gravel strip to address detours and logged outcomes in a maintenance ledger. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice completes the sentence so that it is most grammatically correct and logical? The set of guidelines ___ posted online for public review.",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT014",
+                "code": "RW-SEC-FSS-VFIN",
+                "category": "Form, Structure & Sense",
+                "domain": "Standard English Conventions",
+                "micro_label": "Verb Finiteness",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "were",
+              "is",
+              "have been",
+              "are"
+            ],
+            "correct_answer": "B",
+            "explanation": "Singular subject 'set' takes 'is'."
+          },
+          {
+            "qid": 11016,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Craft & Structure | Text Structure & Purpose",
+            "question_text": "As used in the passage, \u201creplicable\u201d most nearly means",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a bus stop, a team tested a queue markers to address last-second sprints and logged outcomes in a field notes. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "As used in the passage, \u201creplicable\u201d most nearly means",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 4,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT006",
+                "code": "RW-CS-TSP",
+                "category": "Craft & Structure",
+                "domain": "Craft & Structure",
+                "micro_label": "Text Structure & Purpose",
+                "word_count": 82,
+                "table_html": false
+              }
+            },
+            "options": [
+              "decorative",
+              "repeatable",
+              "controversial",
+              "expensive"
+            ],
+            "correct_answer": "B",
+            "explanation": "Operationally, replicable means repeatable under similar conditions."
+          },
+          {
+            "qid": 11008,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Information & Ideas | Inferences",
+            "question_text": "Which choice best states the central idea of the passage?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a museum, a team tested a caption notes to address visitor confusion and logged outcomes in a doc log. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice best states the central idea of the passage?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT004",
+                "code": "RW-INFO-INF",
+                "category": "Information & Ideas",
+                "domain": "Information & Ideas",
+                "micro_label": "Inferences",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "Small, measured changes that repeatedly show results should be adopted.",
+              "A single weekend is enough to prove any reform.",
+              "Publicity is the most reliable guide for all decisions.",
+              "The trial aimed to raise costs to justify expansion."
+            ],
+            "correct_answer": "A",
+            "explanation": "The passage values measured, repeated results and conditional adoption."
+          },
+          {
+            "qid": 11005,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Information & Ideas | Central Ideas & Details",
+            "question_text": "Which choice best states the central idea of the passage?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a bus stop, a team tested a queue markers to address last-second sprints and logged outcomes in a field notes. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which choice best states the central idea of the passage?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT001",
+                "code": "RW-INFO-CID",
+                "category": "Information & Ideas",
+                "domain": "Information & Ideas",
+                "micro_label": "Central Ideas & Details",
+                "word_count": 82,
+                "table_html": false
+              }
+            },
+            "options": [
+              "The trial aimed to raise costs to justify expansion.",
+              "Small, measured changes that repeatedly show results should be adopted.",
+              "A single weekend is enough to prove any reform.",
+              "Publicity is the most reliable guide for all decisions."
+            ],
+            "correct_answer": "B",
+            "explanation": "The passage values measured, repeated results and conditional adoption."
+          },
+          {
+            "qid": 11021,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Expression of Ideas | Transitions",
+            "question_text": "Which statement best synthesizes the information to support the recommendation?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a theater, a team tested a seat map to address door clumps and logged outcomes in a usher log. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which statement best synthesizes the information to support the recommendation?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 4,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT009",
+                "code": "RW-EI-TRANS",
+                "category": "Expression of Ideas",
+                "domain": "Expression of Ideas",
+                "micro_label": "Transitions",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "Slogans are more reliable than records when judging results.",
+              "Because conditions vary, results cannot be compared at all.",
+              "Expanding unrelated services will clarify the evidence.",
+              "Pairing costs with outcomes across weeks provides a basis for deciding whether the change should stay."
+            ],
+            "correct_answer": "D",
+            "explanation": "Synthesis links measures and the adoption rule."
+          },
+          {
+            "qid": 11014,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Craft & Structure | Cross-Text Connections",
+            "question_text": "As used in the passage, \u201creplicable\u201d most nearly means",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a museum, a team tested a caption notes to address visitor confusion and logged outcomes in a doc log. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "As used in the passage, \u201creplicable\u201d most nearly means",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 4,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT007",
+                "code": "RW-CS-CTC",
+                "category": "Craft & Structure",
+                "domain": "Craft & Structure",
+                "micro_label": "Cross-Text Connections",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "decorative",
+              "controversial",
+              "expensive",
+              "repeatable"
+            ],
+            "correct_answer": "D",
+            "explanation": "Operationally, replicable means repeatable under similar conditions."
+          },
+          {
+            "qid": 11020,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Expression of Ideas | Rhetorical Synthesis",
+            "question_text": "Which statement best synthesizes the information to support the recommendation?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a market, a team tested a placards to address aisle bottlenecks and logged outcomes in a volunteer counts. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which statement best synthesizes the information to support the recommendation?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT008",
+                "code": "RW-EI-RSYN",
+                "category": "Expression of Ideas",
+                "domain": "Expression of Ideas",
+                "micro_label": "Rhetorical Synthesis",
+                "word_count": 80,
+                "table_html": false
+              }
+            },
+            "options": [
+              "Expanding unrelated services will clarify the evidence.",
+              "Slogans are more reliable than records when judging results.",
+              "Pairing costs with outcomes across weeks provides a basis for deciding whether the change should stay.",
+              "Because conditions vary, results cannot be compared at all."
+            ],
+            "correct_answer": "C",
+            "explanation": "Synthesis links measures and the adoption rule."
+          },
+          {
+            "qid": 11017,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 1,
+            "difficulty": 1,
+            "skill_category": "Craft & Structure | Cross-Text Connections",
+            "question_text": "Which option best describes the passage\u2019s organization?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a co-op, a team tested a early hour to address cost recovery and logged outcomes in a register report. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which option best describes the passage\u2019s organization?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L1",
+                "difficulty_1_10": 2,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT007",
+                "code": "RW-CS-CTC",
+                "category": "Craft & Structure",
+                "domain": "Craft & Structure",
+                "micro_label": "Cross-Text Connections",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "Problem \u2192 test \u2192 decision rule",
+              "Anecdote \u2192 digression \u2192 epilogue",
+              "Random list of facts",
+              "Prediction without any data"
+            ],
+            "correct_answer": "A",
+            "explanation": "Clear sequence: problem, trial, decision rule."
+          },
+          {
+            "qid": 11004,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Boundaries | Between sentences",
+            "question_text": "Which conclusion is best supported by the table and description?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "Staff added clearer labels and recorded changes across similar days. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early. <table><caption>Average Wait (minutes)</caption><thead><tr><th>Day</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Mon</td><td>18</td><td>12</td></tr><tr><td>Tue</td><td>17</td><td>11</td></tr><tr><td>Wed</td><td>19</td><td>13</td></tr></tbody></table>",
+              "question": "Which conclusion is best supported by the table and description?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Integrates a small data table with the passage and asks for a supported, cautious conclusion.",
+                "category_id": "CAT010",
+                "code": "RW-SEC-BND-BET",
+                "category": "Boundaries",
+                "domain": "Standard English Conventions",
+                "micro_label": "Between sentences",
+                "word_count_excluding_html": 74,
+                "table_html": true
+              }
+            },
+            "options": [
+              "The change increased waits on all days by several minutes.",
+              "Average waits fell by about six to seven minutes on each listed day after the change.",
+              "The table shows no difference between days.",
+              "The table proves the system will work in every city."
+            ],
+            "correct_answer": "B",
+            "explanation": "All three days show a consistent decrease from the 'Before' to 'After' columns by roughly 6\u20137 minutes."
+          },
+          {
+            "qid": 11013,
+            "exam_id": 1,
+            "module": "reading_writing_2",
+            "section_label": "RW2",
+            "level": 2,
+            "difficulty": 2,
+            "skill_category": "Craft & Structure | Text Structure & Purpose",
+            "question_text": "Which option best describes the passage\u2019s organization?",
+            "question_data": {
+              "type": "passage_mcq",
+              "passage": "In a park path, a team tested a gravel strip to address detours and logged outcomes in a maintenance ledger. The trial used plain tools, compared costs with outcomes, and avoided sweeping promises. Staff recorded the same measures on comparable days so results could be judged fairly. If the pattern repeated under similar staffing, the change would become routine; if not, it would end. The note invited feedback and explained limits so readers understood why caution matters when evidence is early.",
+              "question": "Which option best describes the passage\u2019s organization?",
+              "meta": {
+                "section_label": "RW2",
+                "level": "L2",
+                "difficulty_1_10": 3,
+                "difficulty_reason": "Difficulty reflects inference depth, abstraction, and distractor sophistication.",
+                "category_id": "CAT006",
+                "code": "RW-CS-TSP",
+                "category": "Craft & Structure",
+                "domain": "Craft & Structure",
+                "micro_label": "Text Structure & Purpose",
+                "word_count": 81,
+                "table_html": false
+              }
+            },
+            "options": [
+              "Anecdote \u2192 digression \u2192 epilogue",
+              "Problem \u2192 test \u2192 decision rule",
+              "Prediction without any data",
+              "Random list of facts"
+            ],
+            "correct_answer": "B",
+            "explanation": "Clear sequence: problem, trial, decision rule."
+          }
+        ],
+        "difficulty_band": "easy (L1\u2013L2)"
+      }
+    }
+  }
+}
