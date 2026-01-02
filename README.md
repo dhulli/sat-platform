@@ -8,3 +8,25 @@ The project is intended to serve as a foundation for SAT-related functionality s
 
 ## Repository Structure
 
+sat-platform/
+├── backend/ # Node.js + TypeScript API
+│ ├── src/
+│ │ ├── index.ts # Backend entry point
+│ │ ├── routes/ # HTTP route definitions
+│ │ ├── controllers/ # Request handling logic
+│ │ ├── services/ # Business logic
+│ │ └── utils/ # Shared utilities
+│ └── tsconfig.json
+│
+├── frontend/ # React + TypeScript client
+│ ├── src/
+│ │ ├── components/ # Reusable UI components
+│ │ ├── contexts/ # React Context state
+│ │ ├── pages/ # Page-level components
+│ │ ├── test/ # Test scaffolding
+│ │ └── App.tsx
+│ └── tsconfig.json
+│
+├── package.json # Root workspace configuration
+└── .gitignore
+
