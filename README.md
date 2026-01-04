@@ -179,6 +179,181 @@ State related to exams or workflows is centralized using React Context to avoid 
 
 ---
 
+Below is a **clean, copy-paste ready documentation section** you can add directly to your **`README.md`**.
+It is written for **local developers**, assumes **Docker Desktop**, and matches your current setup (CRA frontend + Express backend + MySQL via env vars).
+
+No placeholders, no hand-waving.
+
+---
+
+## 🐳 Docker: Build and Run Locally
+
+This project can be run locally using Docker to mirror a production-like environment. The Docker image bundles:
+
+* React frontend (prebuilt)
+* Node.js / Express backend
+* API + frontend served from a single container
+
+---
+
+### Prerequisites
+
+Ensure the following are installed:
+
+* **Docker Desktop** (Windows / macOS / Linux)
+* **Node.js 18.x** (only required if building frontend outside Docker)
+
+Verify Docker:
+
+```bash
+docker --version
+```
+
+---
+
+## Docker Image Structure (High Level)
+
+* **Frontend**: Built using Create React App and served as static files
+* **Backend**: Express API server
+* **Port**: Single exposed port (default `3000`)
+* **Database**: External (e.g., AWS RDS MySQL)
+
+---
+
+## Environment Variables
+
+The backend expects environment variables for database and auth.
+
+You should already have:
+
+```
+backend/.env
+```
+
+Example (do not commit secrets):
+
+```env
+PORT=3000
+
+DB_HOST=your-db-host
+DB_USER=your-db-user
+DB_PASSWORD=your-db-password
+DB_NAME=sat_platform
+DB_PORT=3306
+
+JWT_SECRET=your-secret-key
+```
+
+---
+
+## Build the Docker Image
+
+From the **repository root**:
+
+```bash
+docker build -t sat-platform .
+```
+
+Explanation:
+
+* Builds frontend
+* Builds backend
+* Produces a single runnable image named `sat-platform`
+
+---
+
+## Run the Application (Local)
+
+```bash
+docker run -p 3000:3000 --env-file backend/.env sat-platform
+```
+
+What this does:
+
+* Maps container port `3000` → host port `3000`
+* Loads environment variables from `backend/.env`
+* Starts the Express server
+
+---
+
+## Access the Application
+
+After startup:
+
+* **Frontend UI**
+  👉 [http://localhost:3000](http://localhost:3000)
+
+* **Health Check**
+  👉 [http://localhost:3000/health](http://localhost:3000/health)
+
+* **API Base**
+  👉 [http://localhost:3000/api](http://localhost:3000/api)
+
+---
+
+## Stop the Container
+
+If running in the foreground:
+
+```text
+Ctrl + C
+```
+
+If running in detached mode (`-d`):
+
+```bash
+docker ps
+docker stop <container-id>
+```
+
+---
+
+## Common Troubleshooting
+
+### Frontend loads without styling
+
+* Ensure frontend was built successfully
+* Ensure Tailwind is compiled locally (no CDN usage)
+* Hard refresh browser (`Ctrl + Shift + R`)
+
+---
+
+### API returns HTML instead of JSON
+
+* Ensure API routes are mounted **before** React catch-all
+* Verify `/api/*` routes exist in backend entry file
+
+---
+
+### Database connection fails
+
+* Verify `backend/.env` is correct
+* Ensure DB is accessible from Docker (public RDS / security group)
+
+---
+
+## Rebuild After Code Changes
+
+Any backend or frontend change requires rebuilding:
+
+```bash
+docker build -t sat-platform .
+docker run -p 3000:3000 --env-file backend/.env sat-platform
+```
+
+---
+
+## Notes for Developers
+
+* This setup intentionally mirrors **ECS / production behavior**
+* React dev server is **not used**
+* All routing and static assets are served by Express
+* Use Docker logs for debugging:
+
+```bash
+docker logs <container-id>
+```
+
 ## Project Status
 
 This project is under active development. Some behaviors are inferred from existing structure and may evolve as features are added.
