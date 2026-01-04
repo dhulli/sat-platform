@@ -1,0 +1,6 @@
+/* stylelint-disable at-rule-no-unknown */
+/* postcss-custom-properties */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */

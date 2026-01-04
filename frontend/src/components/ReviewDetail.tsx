@@ -40,7 +40,7 @@ const ReviewDetail: React.FC = () => {
       try {
         const token = localStorage.getItem("sat_token");
         const res = await fetch(
-          `http://localhost:5000/api/review/reviews/${sessionId}`,
+          `/api/review/reviews/${sessionId}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         const data = await res.json();

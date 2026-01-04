@@ -51,7 +51,7 @@ const AnalyticsDashboard: React.FC = () => {
     const fetchAnalytics = async () => {
       try {
         const token = localStorage.getItem("sat_token");
-        const res = await fetch("http://localhost:5000/api/analytics", {
+        const res = await fetch("/api/analytics", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

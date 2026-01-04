@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useCallback, useMemo } from 'react';
 
 interface Exam {
   id: number;
@@ -57,10 +57,9 @@ export const ExamProvider: React.FC<ExamProviderProps> = ({ children }) => {
   const [exams, setExams] = useState<Exam[]>([]);
   const [currentSession, setCurrentSession] = useState<TestSession | null>(null);
   const [loading, setLoading] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false); // Add this to prevent repeated loads
+  const [hasLoaded, setHasLoaded] = useState(false); // Add this to prevent repeated loads  
 
-  const loadExams = async () => {
-    // Prevent multiple simultaneous loads
+  const loadExams = useCallback(async () => {
     if (loading || hasLoaded) {
       return;
     }
@@ -72,21 +71,21 @@ export const ExamProvider: React.FC<ExamProviderProps> = ({ children }) => {
         throw new Error('No authentication token found');
       }
 
-      const response = await fetch('http://localhost:5000/api/exams', {
+      const response = await fetch('/api/exams', {
         headers: {
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         }
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to load exams: ${response.status} ${response.statusText}`);
+        throw new Error(`Failed to load exams: ${response.status}`);
       }
 
       const result = await response.json();
-      
+
       if (result.success) {
         setExams(result.data.exams);
-        setHasLoaded(true); // Mark as loaded to prevent future loads
+        setHasLoaded(true);
       } else {
         throw new Error(result.message || 'Failed to load exams');
       }
@@ -95,13 +94,14 @@ export const ExamProvider: React.FC<ExamProviderProps> = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [loading, hasLoaded]);
+
 
   const startExam = async (examId: number, forceNew = false): Promise<StartExamResponse> => {
     const token = localStorage.getItem('sat_token');
     if (!token) throw new Error('No authentication token found');
 
-    const url = `http://localhost:5000/api/exams/${examId}/start${forceNew ? '?forceNew=true' : ''}`;
+    const url = `/api/exams/${examId}/start${forceNew ? '?forceNew=true' : ''}`;
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -123,7 +123,7 @@ export const ExamProvider: React.FC<ExamProviderProps> = ({ children }) => {
 
   const getSessionStatus = async (sessionId: number): Promise<TestSession> => {
     const token = localStorage.getItem('sat_token');
-    const response = await fetch(`http://localhost:5000/api/exams/sessions/${sessionId}`, {
+    const response = await fetch(`/api/exams/sessions/${sessionId}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -138,14 +138,15 @@ export const ExamProvider: React.FC<ExamProviderProps> = ({ children }) => {
     return result.data.session;
   };
 
-  const value: ExamContextType = {
+  const value = useMemo<ExamContextType>(() => ({
     exams,
     currentSession,
     loading,
     loadExams,
     startExam,
     getSessionStatus
-  };
+  }), [exams, currentSession, loading, loadExams]);
+
 
   return (
     <ExamContext.Provider value={value}>

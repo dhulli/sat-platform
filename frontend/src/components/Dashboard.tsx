@@ -10,8 +10,8 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (exams.length === 0 && !loading) loadExams();
-  }, [exams.length, loading, loadExams]);
+      loadExams();
+    }, []);
 
   // -------------------------------------------
   // Custom modal logic for Start Test

@@ -17,7 +17,7 @@ const ReviewDashboard: React.FC = () => {
     const fetchCompletedTests = async () => {
       try {
         const token = localStorage.getItem("sat_token");
-        const res = await fetch("http://localhost:5000/api/review/reviews", {
+        const res = await fetch("/api/review/reviews", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

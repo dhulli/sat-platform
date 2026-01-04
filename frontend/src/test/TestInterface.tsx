@@ -109,7 +109,6 @@ const TestInterface: React.FC = () => {
   // timer + session
   const [timeRemaining, setTimeRemaining] = useState<number>(64 * 60);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [session, setSession] = useState<ServerSession | null>(null);
 
   // UI
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -125,14 +124,13 @@ const TestInterface: React.FC = () => {
         const token = localStorage.getItem("sat_token");
 
         // get session status (includes currentModule computed on backend)
-        const res = await fetch(`http://localhost:5000/api/exams/sessions/${sessionId}`, {
+        const res = await fetch(`/api/exams/sessions/${sessionId}`, {
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         });
         const json: GetSessionStatusResponse = await res.json();
         if (!json.success) throw new Error("Failed to fetch session status");
 
         const { session: s, responses, currentModule } = json.data;
-        setSession(s);
 
         // resume timer from paused state
         if (s.status === "paused" && typeof s.time_remaining === "number") {
@@ -159,7 +157,7 @@ const TestInterface: React.FC = () => {
 
         // fetch questions for this module
         const qRes = await fetch(
-          `http://localhost:5000/api/exams/sessions/${sessionId}/modules/${currentModule}/questions`,
+          `/api/exams/sessions/${sessionId}/modules/${currentModule}/questions`,
           { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
         );
         const qJson = await qRes.json();
@@ -209,7 +207,7 @@ const TestInterface: React.FC = () => {
     const token = localStorage.getItem("sat_token");
     try {
       await fetch(
-        `http://localhost:5000/api/exams/sessions/${sessionId}/answers`,
+        `/api/exams/sessions/${sessionId}/answers`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
@@ -249,7 +247,7 @@ const TestInterface: React.FC = () => {
     if (!confirmExit) return;
     try {
       const token = localStorage.getItem("sat_token");
-      await fetch(`http://localhost:5000/api/exams/sessions/${sessionId}/pause`, {
+      await fetch(`/api/exams/sessions/${sessionId}/pause`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         body: JSON.stringify({ time_remaining: timeRemaining }),
@@ -274,7 +272,7 @@ const TestInterface: React.FC = () => {
 
       // Grade just this module and get nextModule + difficulty
       const res = await fetch(
-        `http://localhost:5000/api/exams/sessions/${sessionId}/modules/${currentModule}/complete`,
+        `/api/exams/sessions/${sessionId}/modules/${currentModule}/complete`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
@@ -298,7 +296,7 @@ const TestInterface: React.FC = () => {
       if (!nextModule) {
         // finalize entire test (no UI score), then go to dashboard
         await fetch(
-          `http://localhost:5000/api/exams/sessions/${sessionId}/complete`,
+          `/api/exams/sessions/${sessionId}/complete`,
           { method: "POST", headers: { Authorization: `Bearer ${token}` } }
         );
         navigate("/dashboard");
@@ -313,7 +311,7 @@ const TestInterface: React.FC = () => {
 
       // fetch questions for nextModule
       const qRes = await fetch(
-        `http://localhost:5000/api/exams/sessions/${sessionId}/modules/${nextModule}/questions`,
+        `/api/exams/sessions/${sessionId}/modules/${nextModule}/questions`,
         { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
       );
       const qJson = await qRes.json();
